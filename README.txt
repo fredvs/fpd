@@ -6,6 +6,7 @@
  the debugger classes, but it may grow someday to a fully functional
  debugger written in pascal. I hope you enjoy it.
 
- Marc Weustink
+ Marc Weustink 
+ Mon Apr 10th WET 2006
 
 
