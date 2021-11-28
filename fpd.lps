@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units Count="4">
+      <Unit0>
+        <Filename Value="fpd.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="../dbgclasses.pp"/>
+        <IsPartOfProject Value="True"/>
+        <UsageCount Value="20"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="fpdcommand.pas"/>
+        <UnitName Value="FPDCommand"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="265"/>
+        <CursorPos X="26" Y="279"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="fpdloop.pas"/>
+        <UnitName Value="FPDLoop"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="175"/>
+        <CursorPos X="31" Y="193"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit3>
+    </Units>
+    <JumpHistory Count="3" HistoryIndex="2">
+      <Position1>
+        <Filename Value="fpd.lpr"/>
+      </Position1>
+      <Position2>
+        <Filename Value="fpdcommand.pas"/>
+        <Caret Line="279" Column="26" TopLine="265"/>
+      </Position2>
+      <Position3>
+        <Filename Value="fpdloop.pas"/>
+        <Caret Line="193" Column="31" TopLine="175"/>
+      </Position3>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>
