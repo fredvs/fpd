@@ -51,7 +51,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value=".."/>
+      <OtherUnitFiles Value="fpdebug"/>
       <UnitOutputDirectory Value="units"/>
     </SearchPaths>
     <CodeGeneration>
@@ -64,6 +64,7 @@
     </CodeGeneration>
     <Linking>
       <Debugging>
+        <GenerateDebugInfo Value="False"/>
         <DebugInfoType Value="dsDwarf2Set"/>
         <UseHeaptrc Value="True"/>
       </Debugging>

@@ -7,6 +7,9 @@
       <Unit0>
         <Filename Value="fpd.lpr"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="74"/>
+        <CursorPos Y="101"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -18,7 +21,6 @@
       <Unit2>
         <Filename Value="fpdcommand.pas"/>
         <UnitName Value="FPDCommand"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="265"/>
         <CursorPos X="26" Y="279"/>
@@ -35,7 +37,7 @@
         <Loaded Value="True"/>
       </Unit3>
     </Units>
-    <JumpHistory Count="3" HistoryIndex="2">
+    <JumpHistory Count="4" HistoryIndex="3">
       <Position1>
         <Filename Value="fpd.lpr"/>
       </Position1>
@@ -47,6 +49,10 @@
         <Filename Value="fpdloop.pas"/>
         <Caret Line="193" Column="31" TopLine="175"/>
       </Position3>
+      <Position4>
+        <Filename Value="fpdcommand.pas"/>
+        <Caret Line="279" Column="26" TopLine="265"/>
+      </Position4>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
