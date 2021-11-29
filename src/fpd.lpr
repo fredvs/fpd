@@ -62,6 +62,9 @@ uses
   FpDbgAvrClasses,
   FpDbgCommon;
 
+const
+  version = '1.0.0';      
+
 {$ifdef windows}
 function CtrlCHandler(CtrlType: Cardinal): BOOL; stdcall;
 begin
@@ -83,8 +86,8 @@ end;
 {$endif}
 
 begin
-  Write('FPDebugger on ', {$I %FPCTARGETOS%}, ' for ', {$I %FPCTARGETCPU%});
-  WriteLn(' (', {$I %DATE%}, ' ', {$I %TIME%}, ' FPC: ', {$I %FPCVERSION%}, ')' );
+  Writeln('FPDebugger v' + version + ' on ', {$I %FPCTARGETOS%}, ' for ', {$I %FPCTARGETCPU%});
+  WriteLn('  (', {$I %DATE%}, ' ', {$I %TIME%}, ' FPC: ', {$I %FPCVERSION%}, ')' );
   WriteLn('Copyright (c) 2006-2009 by Marc Weustink');
   WriteLn('Starting ...');
   

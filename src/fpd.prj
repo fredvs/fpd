@@ -796,8 +796,9 @@ envvarons=0
 [edit]
 hintwidth=0
 hintheight=0
-finddtext=divizion
+finddtext=initialize
 findhistory=20
+ initialize
  divizion
  backsla
  bak
@@ -817,16 +818,25 @@ findhistory=20
  os:
  'contin
  file /
- initi
 findoptions=1
-editpos=1
- 0,37
+editpos=3
+ 0,95
+ 0,-1073741823
+ 0,-1073741823
 bookmarks0=0
-sourcefiles=1
+bookmarks1=0
+bookmarks2=0
+sourcefiles=3
  ${PROJECTDIR}/fpd.lpr
-relpaths=1
+ ${PROJECTDIR}/fpdglobal.pas
+ ${PROJECTDIR}/fpdloop.pas
+relpaths=3
  fpd.lpr
-ismoduletexts=1
+ fpdglobal.pas
+ fpdloop.pas
+ismoduletexts=3
+ 0
+ 0
  0
 modules=0
 moduleoptions=0
@@ -836,7 +846,7 @@ nomenumodules=0
 firsttab=0
 index=0
 [layout]
-windowlayout=527
+windowlayout=522
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -1278,11 +1288,11 @@ windowlayout=527
  nx=0
  ny=0
  ncx=1204
- ncy=58
+ ncy=54
  x=0
  y=0
  cx=1219
- cy=56
+ cy=52
  rcx=0
  rcy=0
  [debuggerfo.edit_options]
@@ -1293,14 +1303,9 @@ windowlayout=527
  value=Pascal
  [debuggerfo.file_history]
  value=/home/fred/fpd/src/fpd.lpr
- history=7
-  /home/fred/fpc-ootb_322ok/packages/rtl-console/src/inc/keybrdh.inc
-  /usr/share/fpcsrc/3.2.0/rtl/freebsd/termio.pp
-  /home/fred/fpd/fpd.lpr
-  /home/fred/fpd/crt.inc
-  /home/fred/fpd/crth.inc
-  /home/fred/fpd/fpdloop.pas
-  ${PROJECTDIR}/main.pas
+ history=2
+  /home/fred/fpd/src/fpd.lpr
+  /home/fred/fpd/src/fpdglobal.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]

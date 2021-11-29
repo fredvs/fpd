@@ -42,7 +42,7 @@ uses
 type
   TFPDImageInfo = (iiNone, iiName, iiDetail);
   TIniState = (isNo, isInit, isRun);
-
+  
 var
   GBreakOnLibraryLoad: Boolean = False;
   GImageInfo: TFPDImageInfo = iiNone;
