@@ -63,7 +63,7 @@ uses
   FpDbgCommon;
 
 const
-  version = '1.0.0';      
+  version = '1.0.2';      
 
 {$ifdef windows}
 function CtrlCHandler(CtrlType: Cardinal): BOOL; stdcall;
