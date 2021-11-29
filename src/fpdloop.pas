@@ -266,12 +266,22 @@ end;
 function getkeys(prompt: string): string;
 var
   s: string = '';
-  stmp: string = '';
   b: Boolean;
   i, ih: integer;
   key: char = #00;
   kw: word;
   k: TKeyEvent;
+  
+  procedure removeline;
+  var
+  stmp: string = ' ';
+  i : integer;
+  begin
+     for i  := 1 to length(s) + length(prompt) do
+       stmp := stmp + ' ';
+     Write(#13 + stmp); // clear current line
+  end;
+  
 begin
   InitKeyBoard;
   ih := 0; // index history
@@ -281,38 +291,38 @@ begin
     K   := TranslateKeyEvent(K);
     kw  := GetKeyEventCode(K);
     key := GetKeyEventChar(K);
+    
     case kw of
-      KbdDown: if length(HistoryCommand) > 0 then // Down arrow key
+      KbdUp: if length(HistoryCommand) > 0 then // Up arrow key
         begin
-          stmp   := ' ';
-          for i  := 1 to length(s) + length(prompt) do
-            stmp := stmp + ' ';
-          Write(#13 + stmp); // clear previous line
+          removeline;
           if ih < length(HistoryCommand) then
-            Inc(ih);
-          s := HistoryCommand[length(HistoryCommand) - ih];
+          begin
+           s := HistoryCommand[length(HistoryCommand) -1 - ih];
+           Inc(ih);
+          end else s := '' ; 
+          
           Write(#13 + prompt + s);
         end;
 
-      kbdUp: if length(HistoryCommand) > 0 then // Up arrow key
+      kbdDown: if length(HistoryCommand) > 0 then // Down arrow key
         begin
-          stmp   := ' ';
-          for i  := 1 to length(s) + length(prompt) do
-            stmp := stmp + ' ';
-          Write(#13 + stmp); // clear previous line
-          if (ih > 1) then
-            Dec(ih)
-          else
-            ih := 1;
-          s    := HistoryCommand[length(HistoryCommand) - ih];
-          Write(#13 + prompt + s);
+          removeline;
+          if (ih > 0 ) then
+          begin
+            s    := HistoryCommand[length(HistoryCommand) - ih];
+            Dec(ih);
+          end  else
+          begin
+           ih := 0;
+           s := '';
+          end; 
+          Write(#13 + prompt + s); 
         end;
+                
       3592: // backspace
       begin 
-        stmp   := '';
-        for i  := 1 to length(s) + length(prompt) do
-          stmp := stmp + ' ';
-        Write(#13 + stmp);
+        removeline;
         s := system.copy(s, 1, length(s) - 1);
         Write(#13 + prompt + s);
       end;
@@ -356,7 +366,7 @@ begin
 
   writeln();
 
-  if trim(S) <> '' then
+  if S <> '' then
     FLast := S;
   if FLast <> '' then
   begin

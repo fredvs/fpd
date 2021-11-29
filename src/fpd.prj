@@ -820,9 +820,9 @@ findhistory=20
  file /
 findoptions=1
 editpos=3
- 0,95
  0,-1073741823
  0,-1073741823
+ 0,320
 bookmarks0=0
 bookmarks1=0
 bookmarks2=0
@@ -844,9 +844,9 @@ visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
 firsttab=0
-index=0
+index=2
 [layout]
-windowlayout=522
+windowlayout=523
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -866,7 +866,7 @@ windowlayout=522
  cy=621
  rcx=0
  rcy=0
- wsize=0
+ wsize=6
  active=1
  visible=1
  [findmessagefo.findtext]
@@ -1176,8 +1176,8 @@ windowlayout=522
  ncx=0
  ncy=0
  x=0
- y=512
- cx=1219
+ y=602
+ cx=1356
  cy=88
  rcx=0
  rcy=0
@@ -1275,8 +1275,8 @@ windowlayout=522
  ncy=0
  x=0
  y=0
- cx=1219
- cy=50
+ cx=1356
+ cy=59
  rcx=0
  rcy=0
  [debuggerfo.basedock]
@@ -1287,12 +1287,12 @@ windowlayout=522
  mdistate=0
  nx=0
  ny=0
- ncx=1204
- ncy=54
+ ncx=1356
+ ncy=57
  x=0
  y=0
- cx=1219
- cy=52
+ cx=1356
+ cy=57
  rcx=0
  rcy=0
  [debuggerfo.edit_options]
@@ -1302,8 +1302,9 @@ windowlayout=522
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/fpd/src/fpd.lpr
- history=2
+ value=/home/fred/fpd/src/fpdloop.pas
+ history=3
+  /home/fred/fpd/src/fpdloop.pas
   /home/fred/fpd/src/fpd.lpr
   /home/fred/fpd/src/fpdglobal.pas
  [debuggerfo.project_options]
@@ -1322,13 +1323,13 @@ windowlayout=522
  ncy=0
  x=0
  y=0
- cx=1219
- cy=456
+ cx=1356
+ cy=537
  rcx=0
  rcy=0
  [sourcefo.files_tab]
  firsttab=0
- index=0
+ index=2
  [confideufo.fontname]
  value=stf_default
  [confideufo.usedefaulteditoroptions]
@@ -1364,9 +1365,9 @@ windowlayout=522
  ncx=0
  ncy=0
  x=0
- y=53
- cx=1219
- cy=456
+ y=62
+ cx=1356
+ cy=537
  rcx=0
  rcy=0
 [targetconsole]
