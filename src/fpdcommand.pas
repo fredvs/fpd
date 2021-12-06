@@ -137,8 +137,20 @@ begin
   end;
 end;
 
+procedure HandleHelpAll(AParams: String; out CallProcessLoop: boolean);
+var
+  n: Integer;
+begin
+  CallProcessLoop:=false;
+   WriteLN('Available commands:');
+   WriteLN();
+    for n := 0 to MCommands.Count - 1 do
+      WriteLN(' ', MCommands[n].Command, ':  ', MCommands[n].help);
+end;
+
 procedure HandleFile(AParams: String; out CallProcessLoop: boolean);
 begin
+   CallProcessLoop:=false;
   if IniState <> isNo then
     WriteLN('The debuggee was already initialized') else
   if trim(AParams) = '' then
@@ -184,6 +196,7 @@ procedure HandleInit(AParams: String; out CallProcessLoop: boolean);
 var
   AParamList: TStringList;
 begin
+  CallProcessLoop:=false;
  if IniState <> isNo then
    WriteLN('Init already done') else
  begin  
@@ -304,6 +317,7 @@ end;
 
 procedure HandleRun(AParams: String; out CallProcessLoop: boolean);
 begin
+   CallProcessLoop:=false;
   if IniState = isNo then
   WriteLN('The debuggee was not initialized') else
   if IniState = isRun then
@@ -322,6 +336,7 @@ end;
 
 procedure HandleContinue(AParams: String; out CallProcessLoop: boolean);
 begin
+   CallProcessLoop:=false;
   if IniState = isNo then
   WriteLN('The debuggee was not initialized') else
   if IniState = isInit then
@@ -355,6 +370,7 @@ end;
 
 procedure HandleNextInst(AParams: String; out CallProcessLoop: boolean);
 begin
+   CallProcessLoop:=false;
   if IniState = isNo then
   WriteLN('The debuggee was not initialized') else
   if IniState = isInit then
@@ -373,6 +389,7 @@ end;
 
 procedure HandleNext(AParams: String; out CallProcessLoop: boolean);
 begin
+   CallProcessLoop:=false;
   if IniState = isNo then
   WriteLN('The debuggee was not initialized') else
   if IniState = isInit then
@@ -391,6 +408,7 @@ end;
 
 procedure HandleStep(AParams: String; out CallProcessLoop: boolean);
 begin
+  CallProcessLoop:=false;
  if IniState = isNo then
   WriteLN('The debuggee was not initialized') else
   if IniState = isInit then
@@ -409,6 +427,7 @@ end;
 
 procedure HandleStepOut(AParams: String; out CallProcessLoop: boolean);
 begin
+  CallProcessLoop:=false;
 if IniState = isNo then
   WriteLN('The debuggee was not initialized') else
   if IniState = isInit then
@@ -427,6 +446,7 @@ end;
 
 procedure HandleStepInst(AParams: String; out CallProcessLoop: boolean);
 begin
+   CallProcessLoop:=false;
   if IniState = isNo then
   WriteLN('The debuggee was not initialized') else
   if IniState = isInit then
@@ -940,6 +960,7 @@ begin
   MCommands := TFPDCommandList.Create;
 
   MCommands.AddCommand(['help', 'h', '?'], @HandleHelp, 'help [<command>]: Shows help on a command, or this help if no command given');
+  MCommands.AddCommand(['helpall'], @HandleHelpall, 'helpall: Shows help detailed for all commands');
   MCommands.AddCommand(['quit', 'q'], @HandleQuit,  'quit: Quits the debugger');
   MCommands.AddCommand(['file', 'f'], @HandleFile, 'file <filename>: Loads the debuggee <filename>');
   MCommands.AddCommand(['show', 'sh'], @HandleShow, 'show <info>: Enter show help for more info');

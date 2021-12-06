@@ -144,6 +144,8 @@ begin
   WriteLn('Debug information loaded.');
   targetInfo := GController.CurrentProcess.LoaderList[0].TargetInfo;
   WriteLn('  Machine type: ', targetInfo.machineType);
+  WriteLn('  Bitness: ', targetInfo.Bitness);
+  WriteLn('  ByteOrder: ', targetInfo.ByteOrder);
   WriteLn('  OS: ', targetInfo.OS);
 end;
 

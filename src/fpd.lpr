@@ -63,7 +63,12 @@ uses
   FpDbgCommon;
 
 const
-  version = '1.0.2';      
+  version = '1.0.2';   
+  
+var
+  i : integer;
+  helparg: boolean = false;   
+  b: boolean = true;  
 
 {$ifdef windows}
 function CtrlCHandler(CtrlType: Cardinal): BOOL; stdcall;
@@ -86,12 +91,26 @@ end;
 {$endif}
 
 begin
+  if ParamCount > 0 then
+    for i := 1 to ParamCount do
+    if (ParamStr(i) = '?') or (ParamStr(i) = '-help') or (ParamStr(i) = '--help') 
+       or (ParamStr(i) = '-h') or (ParamStr(i) = 'h') then 
+    begin
+      helparg:= true; 
+    end;
+  
   Writeln('FPDebugger v' + version + ' on ', {$I %FPCTARGETOS%}, ' for ', {$I %FPCTARGETCPU%});
   WriteLn('  (', {$I %DATE%}, ' ', {$I %TIME%}, ' FPC: ', {$I %FPCVERSION%}, ')' );
   WriteLn('Copyright (c) 2006-2009 by Marc Weustink');
-  WriteLn('Starting ...');
   
-  setlength(HistoryCommand,0);
+   if  helparg = true then
+   begin
+    HandleCommand('helpall',b);
+    //  readln();
+   end else
+   begin   
+     WriteLn('Starting ...');
+   setlength(HistoryCommand,0);
    
 {$ifdef windows}
   SetConsoleCtrlHandler(@CtrlCHandler, True);
@@ -101,4 +120,5 @@ begin
 {$ifdef windows}
   SetConsoleCtrlHandler(@CtrlCHandler, False);
 {$endif}
+end;
 end.
