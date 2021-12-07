@@ -55,8 +55,9 @@ findinfiledialog=61
  filefilterindex=0
  filefilter="*.pas" "*.pp" "*.inc"
  [findinfileadialogfo.findtext]
- value=machineType
+ value=SymbolCount =
  history=20
+  SymbolCount =
   machineType
   ATargetInfo
   divizion
@@ -76,9 +77,8 @@ findinfiledialog=61
   breakpoint
   Initialize
   'run'
-  Using file
  [findinfileadialogfo]
- stackedunder=
+ stackedunder=finddialogfo
  x=352
  y=364
  cx=339
@@ -784,8 +784,9 @@ envvarons=0
 [edit]
 hintwidth=0
 hintheight=0
-finddtext=zero
+finddtext=maxint
 findhistory=20
+ maxint
  zero
  handlerun
  run
@@ -805,23 +806,16 @@ findhistory=20
  continue
  conitnue
  fred
- paramst
 findoptions=1
-editpos=14
- 0,-1073741823
- 0,-1073741823
- 0,-1073741823
+editpos=8
  0,-1073741823
  0,0
- 0,-1073741823
+ 0,5524
+ 32,15
+ 0,86
  0,0
+ 0,114
  0,-1073741823
- 0,-1073741823
- 0,10
- 0,-1073741823
- 0,-1073741823
- 0,-1073741823
- 0,7
 bookmarks0=0
 bookmarks1=0
 bookmarks2=0
@@ -830,49 +824,25 @@ bookmarks4=0
 bookmarks5=0
 bookmarks6=0
 bookmarks7=0
-bookmarks8=0
-bookmarks9=0
-bookmarks10=0
-bookmarks11=0
-bookmarks12=0
-bookmarks13=0
-sourcefiles=14
+sourcefiles=8
  ${PROJECTDIR}/fpd.lpr
- ${PROJECTDIR}/fpdebug/fpdbglinuxclasses.pas
- ${PROJECTDIR}/fpdebug/fpimgreadermachofile.pas
- ${PROJECTDIR}/fpdebug/macho.pas
- ${PROJECTDIR}/fpdebug/fpdbgcommon.pas
- ${PROJECTDIR}/fpdebug/fpdbglinuxclasses.pas
+ ${PROJECTDIR}/fpdebug/fpdbgsymtablecontext.pas
+ ${PROJECTDIR}/fpdebug/fpdbgdwarf.pas
  ${PROJECTDIR}/fpdebug/fpimgreaderelf.pas
  ${PROJECTDIR}/fpdebug/fpimgreaderwinpe.pas
- ${PROJECTDIR}/fpdloop.pas
- ${PROJECTDIR}/fpdebug/fpdbgavrclasses.pas
- ${PROJECTDIR}/fpdebug/fpdbgclasses.pp
  ${PROJECTDIR}/fpdebug/fpdbgcommon.pas
  ${PROJECTDIR}/fpdebug/fpimgreaderelf.pas
  ${PROJECTDIR}/fpdcommand.pas
-relpaths=14
+relpaths=8
  fpd.lpr
- fpdebug/fpdbglinuxclasses.pas
- fpdebug/fpimgreadermachofile.pas
- fpdebug/macho.pas
- fpdebug/fpdbgcommon.pas
- fpdebug/fpdbglinuxclasses.pas
+ fpdebug/fpdbgsymtablecontext.pas
+ fpdebug/fpdbgdwarf.pas
  fpdebug/fpimgreaderelf.pas
  fpdebug/fpimgreaderwinpe.pas
- fpdloop.pas
- fpdebug/fpdbgavrclasses.pas
- fpdebug/fpdbgclasses.pp
  fpdebug/fpdbgcommon.pas
  fpdebug/fpimgreaderelf.pas
  fpdcommand.pas
-ismoduletexts=14
- 0
- 0
- 0
- 0
- 0
- 0
+ismoduletexts=8
  0
  0
  0
@@ -886,25 +856,19 @@ moduleoptions=0
 visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
-order=14
+order=8
  0
- 1
- 2
- 3
- 4
  6
- 9
+ 2
  13
- 8
- 5
- 7
  11
  12
- 10
+ 1
+ 7
 firsttab=0
-index=4
+index=1
 [layout]
-windowlayout=546
+windowlayout=542
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -1019,7 +983,7 @@ windowlayout=546
  [findinfilefo]
  splitdir=0
  useroptions=268451947
- stackedunder=
+ stackedunder=mainfo
  parent=
  mdistate=0
  nx=0
@@ -1035,7 +999,7 @@ windowlayout=546
  [projecttreefo]
  splitdir=0
  useroptions=268484715
- stackedunder=mainfo
+ stackedunder=findinfilefo
  parent=
  mdistate=3
  nx=0
@@ -1360,12 +1324,14 @@ windowlayout=546
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/fpd/src/fpdebug/fpdbgcommon.pas
- history=11
-  /home/fred/fpd/src/fpdcommand.pas
+ value=/home/fred/fpd/src/fpdebug/fpimgreaderelf.pas
+ history=13
+  /home/fred/fpd/src/fpdebug/fpimgreaderelftypes.pas
+  /home/fred/fpd/src/fpdebug/fpdbgclasses.pp
   /home/fred/fpd/src/fpdebug/fpimgreaderelf.pas
   /home/fred/fpd/src/fpdebug/fpdbgsymtablecontext.pas
   /home/fred/Azote/clt/Azote.dpr
+  /home/fred/fpd/src/fpdcommand.pas
   /home/fred/fpd/src/fpd.lpr
   /home/fred/Azote/tests/Test.pas
   /home/fred/Azote/source/disasm/arch/AArch64/aarch64-adt-asm.inc
@@ -1394,23 +1360,17 @@ windowlayout=546
  rcx=0
  rcy=0
  [sourcefo.files_tab]
- order=14
+ order=8
   0
-  1
-  2
-  3
-  4
   6
-  9
+  2
   13
-  8
-  5
-  7
   11
   12
-  10
+  1
+  7
  firsttab=0
- index=4
+ index=1
  [confideufo.fontname]
  value=stf_default
  [confideufo.usedefaulteditoroptions]

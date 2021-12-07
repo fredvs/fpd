@@ -101,7 +101,7 @@ type
     st_shndx : word;
   end;
   PElf32symbolArray = ^TElf32symbolArray;
-  TElf32symbolArray = array[0..maxint] of TElf32symbol;
+  TElf32symbolArray = array[0..maxsmallint] of TElf32symbol;
 
   TElf64symbol=record
     st_name  : longword;
@@ -112,7 +112,7 @@ type
     st_size  : qword;
   end;
   PElf64symbolArray = ^TElf64symbolArray;
-  TElf64symbolArray = array[0..maxint] of TElf64symbol;
+  TElf64symbolArray = array[0..maxsmallint] of TElf64symbol;
 
 const
   // Symbol-map section name
@@ -470,10 +470,12 @@ begin
     begin
       SymbolArr64:=PDbgImageSectionEx(p)^.Sect.RawData;
       SymbolCount := PDbgImageSectionEx(p)^.Sect.Size div sizeof(TElf64symbol);
+      
+      writeln('SymbolCount = ' + inttostr(SymbolCount));
+      
       for i := 0 to SymbolCount-1 do
       begin
-        begin
-          {$push}
+        {$push}
           {$R-}
           if SymbolArr64^[i].st_name<>0 then
             begin
@@ -488,8 +490,7 @@ begin
             AfpSymbolInfo.Add(SymbolName, TDbgPtr(SymbolArr64^[i].st_value+ImageBase),
               Sect^.Address + Sect^.Size);
             end;
-          {$pop}
-        end
+         {$pop}
       end;
     end
     else
@@ -498,7 +499,8 @@ begin
       SymbolCount := PDbgImageSectionEx(p)^.Sect.Size div sizeof(TElf32symbol);
       for i := 0 to SymbolCount-1 do
       begin
-        begin
+        {$push}
+          {$R-}
           if SymbolArr32^[i].st_name<>0 then
             begin
             SectIdx := SymbolArr32^[i].st_shndx;
@@ -512,9 +514,9 @@ begin
             AfpSymbolInfo.Add(SymbolName, TDBGPtr(SymbolArr32^[i].st_value+ImageBase),
               Sect^.Address + Sect^.Size);
             end;
+           {$pop} 
         end
-      end;
-    end;
+     end;
   end;
 end;
 
