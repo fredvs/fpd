@@ -84,7 +84,7 @@ const
 
 type
   PImageSymbolArray = ^TImageSymbolArray;
-  TImageSymbolArray = array[0..maxSmallint] of TImageSymbol;
+  TImageSymbolArray = array[0..maxint] of TImageSymbol;
 
 function isValidPEStream(ASource: TDbgFileLoader): Boolean;
 var

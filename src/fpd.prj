@@ -784,8 +784,9 @@ envvarons=0
 [edit]
 hintwidth=0
 hintheight=0
-finddtext=handlerun
+finddtext=zero
 findhistory=20
+ zero
  handlerun
  run
  machinety
@@ -805,23 +806,22 @@ findhistory=20
  conitnue
  fred
  paramst
- ismi
 findoptions=1
 editpos=14
- 0,0
  0,-1073741823
  0,-1073741823
  0,-1073741823
  0,-1073741823
  0,0
  0,-1073741823
- 0,-1073741823
- 0,330
- 0,-1073741823
- 0,-1073741823
- 0,-1073741823
- 0,-1073741823
  0,0
+ 0,-1073741823
+ 0,-1073741823
+ 0,10
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,7
 bookmarks0=0
 bookmarks1=0
 bookmarks2=0
@@ -902,9 +902,9 @@ order=14
  12
  10
 firsttab=0
-index=7
+index=4
 [layout]
-windowlayout=536
+windowlayout=546
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -973,7 +973,7 @@ windowlayout=536
  [memoryfo]
  splitdir=0
  useroptions=268451963
- stackedunder=findmessagefo
+ stackedunder=dialogfilesfo
  parent=
  mdistate=0
  nx=0
@@ -1346,7 +1346,7 @@ windowlayout=536
  nx=0
  ny=0
  ncx=1219
- ncy=77
+ ncy=60
  x=0
  y=0
  cx=1219
@@ -1360,9 +1360,19 @@ windowlayout=536
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/fpd/src/fpdcommand.pas
- history=1
-  ${PROJECTDIR}/main.pas
+ value=/home/fred/fpd/src/fpdebug/fpdbgcommon.pas
+ history=11
+  /home/fred/fpd/src/fpdcommand.pas
+  /home/fred/fpd/src/fpdebug/fpimgreaderelf.pas
+  /home/fred/fpd/src/fpdebug/fpdbgsymtablecontext.pas
+  /home/fred/Azote/clt/Azote.dpr
+  /home/fred/fpd/src/fpd.lpr
+  /home/fred/Azote/tests/Test.pas
+  /home/fred/Azote/source/disasm/arch/AArch64/aarch64-adt-asm.inc
+  /home/fred/Azote/clt/Azote.pas
+  /home/fred/fpd/src/fpdebug/fpdbgavrclasses.pas
+  /home/fred/fpd/src/fpdloop.pas
+  /home/fred/fpd/src/fpdglobal.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]
@@ -1400,7 +1410,7 @@ windowlayout=536
   12
   10
  firsttab=0
- index=7
+ index=4
  [confideufo.fontname]
  value=stf_default
  [confideufo.usedefaulteditoroptions]

@@ -101,7 +101,7 @@ type
     st_shndx : word;
   end;
   PElf32symbolArray = ^TElf32symbolArray;
-  TElf32symbolArray = array[0..maxSmallint] of TElf32symbol;
+  TElf32symbolArray = array[0..maxint] of TElf32symbol;
 
   TElf64symbol=record
     st_name  : longword;
@@ -112,9 +112,7 @@ type
     st_size  : qword;
   end;
   PElf64symbolArray = ^TElf64symbolArray;
-  TElf64symbolArray = array[0..maxSmallint] of TElf64symbol;
-
-
+  TElf64symbolArray = array[0..maxint] of TElf64symbol;
 
 const
   // Symbol-map section name

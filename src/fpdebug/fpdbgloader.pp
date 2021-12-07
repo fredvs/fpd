@@ -254,7 +254,7 @@ end;
 
 procedure TDbgImageLoader.ParseSymbolTable(AFpSymbolInfo: TfpSymbolList);
 begin
-  if IsValid then
+   if IsValid then
     FImgReader.ParseSymbolTable(AFpSymbolInfo);
 end;
 
