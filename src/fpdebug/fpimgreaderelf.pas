@@ -133,6 +133,8 @@ begin
     EM_IA_64:     result := mtIA_64;
     EM_X86_64:    result := mtX86_64;
     EM_AVR:       result := mtAVR8;
+    EM_XTENSA:    result := mtXTENSA;
+    EM_AARCH64:   result := mtAARCH64;
     EM_ALPHA:     result := mtALPHA;
   else
     result := mtNone;
@@ -268,8 +270,8 @@ begin
     end;
 
     case ident[EI_OSABI] of
-      ELFOSABI_LINUX: FTargetInfo.OS := osLinux;
-      ELFOSABI_STANDALONE: FTargetInfo.OS := osEmbedded;
+       ELFOSABI_SYSV, ELFOSABI_LINUX: FTargetInfo.OS := osLinux;
+       ELFOSABI_STANDALONE: FTargetInfo.OS := osEmbedded;
     else
       FTargetInfo.OS := osNone;  // Will take a guess after machine type is available
     end;

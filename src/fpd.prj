@@ -807,14 +807,15 @@ findhistory=20
  conitnue
  fred
 findoptions=1
-editpos=8
+editpos=9
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
  0,-1073741823
  0,0
- 0,5524
- 32,15
- 0,86
- 0,0
- 0,114
  0,-1073741823
 bookmarks0=0
 bookmarks1=0
@@ -824,7 +825,8 @@ bookmarks4=0
 bookmarks5=0
 bookmarks6=0
 bookmarks7=0
-sourcefiles=8
+bookmarks8=0
+sourcefiles=9
  ${PROJECTDIR}/fpd.lpr
  ${PROJECTDIR}/fpdebug/fpdbgsymtablecontext.pas
  ${PROJECTDIR}/fpdebug/fpdbgdwarf.pas
@@ -833,7 +835,8 @@ sourcefiles=8
  ${PROJECTDIR}/fpdebug/fpdbgcommon.pas
  ${PROJECTDIR}/fpdebug/fpimgreaderelf.pas
  ${PROJECTDIR}/fpdcommand.pas
-relpaths=8
+ ${PROJECTDIR}/fpdebug/fpdbglinuxclasses.pas
+relpaths=9
  fpd.lpr
  fpdebug/fpdbgsymtablecontext.pas
  fpdebug/fpdbgdwarf.pas
@@ -842,7 +845,9 @@ relpaths=8
  fpdebug/fpdbgcommon.pas
  fpdebug/fpimgreaderelf.pas
  fpdcommand.pas
-ismoduletexts=8
+ fpdebug/fpdbglinuxclasses.pas
+ismoduletexts=9
+ 0
  0
  0
  0
@@ -856,19 +861,20 @@ moduleoptions=0
 visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
-order=8
+order=9
  0
- 6
- 2
- 13
- 11
- 12
  1
+ 2
+ 3
  7
+ 8
+ 4
+ 5
+ 6
 firsttab=0
-index=1
+index=4
 [layout]
-windowlayout=542
+windowlayout=543
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -888,7 +894,7 @@ windowlayout=542
  cy=621
  rcx=0
  rcy=0
- wsize=0
+ wsize=6
  active=1
  visible=1
  [findmessagefo.findtext]
@@ -983,7 +989,7 @@ windowlayout=542
  [findinfilefo]
  splitdir=0
  useroptions=268451947
- stackedunder=mainfo
+ stackedunder=
  parent=
  mdistate=0
  nx=0
@@ -999,7 +1005,7 @@ windowlayout=542
  [projecttreefo]
  splitdir=0
  useroptions=268484715
- stackedunder=findinfilefo
+ stackedunder=mainfo
  parent=
  mdistate=3
  nx=0
@@ -1198,8 +1204,8 @@ windowlayout=542
  ncx=0
  ncy=0
  x=0
- y=512
- cx=1219
+ y=602
+ cx=1356
  cy=88
  rcx=0
  rcy=0
@@ -1297,8 +1303,8 @@ windowlayout=542
  ncy=0
  x=0
  y=0
- cx=1219
- cy=52
+ cx=1356
+ cy=61
  rcx=0
  rcy=0
  [debuggerfo.basedock]
@@ -1309,12 +1315,12 @@ windowlayout=542
  mdistate=0
  nx=0
  ny=0
- ncx=1219
- ncy=60
+ ncx=1356
+ ncy=69
  x=0
  y=0
- cx=1219
- cy=60
+ cx=1356
+ cy=69
  rcx=0
  rcy=0
  [debuggerfo.edit_options]
@@ -1324,14 +1330,14 @@ windowlayout=542
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/fpd/src/fpdebug/fpimgreaderelf.pas
+ value=/home/fred/fpd/src/fpdcommand.pas
  history=13
-  /home/fred/fpd/src/fpdebug/fpimgreaderelftypes.pas
-  /home/fred/fpd/src/fpdebug/fpdbgclasses.pp
+  /home/fred/fpd/src/fpdcommand.pas
   /home/fred/fpd/src/fpdebug/fpimgreaderelf.pas
   /home/fred/fpd/src/fpdebug/fpdbgsymtablecontext.pas
+  /home/fred/fpd/src/fpdebug/fpimgreaderelftypes.pas
+  /home/fred/fpd/src/fpdebug/fpdbgclasses.pp
   /home/fred/Azote/clt/Azote.dpr
-  /home/fred/fpd/src/fpdcommand.pas
   /home/fred/fpd/src/fpd.lpr
   /home/fred/Azote/tests/Test.pas
   /home/fred/Azote/source/disasm/arch/AArch64/aarch64-adt-asm.inc
@@ -1355,22 +1361,23 @@ windowlayout=542
  ncy=0
  x=0
  y=0
- cx=1219
- cy=454
+ cx=1356
+ cy=535
  rcx=0
  rcy=0
  [sourcefo.files_tab]
- order=8
+ order=9
   0
-  6
-  2
-  13
-  11
-  12
   1
+  2
+  3
   7
+  8
+  4
+  5
+  6
  firsttab=0
- index=1
+ index=4
  [confideufo.fontname]
  value=stf_default
  [confideufo.usedefaulteditoroptions]
@@ -1406,9 +1413,9 @@ windowlayout=542
  ncx=0
  ncy=0
  x=0
- y=55
- cx=1219
- cy=454
+ y=64
+ cx=1356
+ cy=535
  rcx=0
  rcy=0
 [targetconsole]

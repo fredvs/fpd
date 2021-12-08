@@ -925,7 +925,7 @@ class function TDbgLinuxProcess.isSupported(ATargetInfo: TTargetDescriptor
   ): boolean;
 begin
   result := (ATargetInfo.OS = osLinux) and
-            (ATargetInfo.machineType in [mt386, mtX86_64, mtARM, mtARM64]);
+            (ATargetInfo.machineType in [mt386, mtX86_64, mtARM, mtAARCH64]);
 end;
 
 function TDbgLinuxProcess.ReadWordSize(Adr: TDbgPtr; out AVal: TDBGPtr
