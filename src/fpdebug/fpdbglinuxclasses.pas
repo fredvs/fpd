@@ -1887,7 +1887,7 @@ initialization
   {$endif}
   
   {$if defined(CPUAARCH64) or defined(CPUARM)}
-   TX86ArmDecoder
+   TArmAsmDecoder
   {$endif} 
    
   ));

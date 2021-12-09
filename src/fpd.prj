@@ -55,8 +55,10 @@ findinfiledialog=61
  filefilterindex=0
  filefilter="*.pas" "*.pp" "*.inc"
  [findinfileadialogfo.findtext]
- value=fpdbgdisas
+ value=TArmAsmDecoder
  history=20
+  TArmAsmDecoder
+  TX86ArmDecoder
   fpdbgdisas
   aarch64
   TDBGPtr
@@ -75,8 +77,6 @@ findinfiledialog=61
   AddLocotion
   eax
   orig_rax
-  SymbolCount =
-  machineType
  [findinfileadialogfo]
  stackedunder=
  x=352
@@ -813,23 +813,23 @@ findhistory=20
  divizion
 findoptions=1
 editpos=17
- 0,43
- 0,0
- 0,72
- 0,575
- 0,9
- 0,0
- 0,65
  0,-1073741823
  0,-1073741823
- 0,219
- 0,9
- 0,1881
- 0,10
- 0,193
- 0,55
- 0,24
- 0,14
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,1889
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
 bookmarks0=0
 bookmarks1=0
 bookmarks2=0
@@ -908,26 +908,26 @@ nomenumodules=0
 [sourcefo.files_tab]
 order=17
  0
- 9
- 10
- 6
- 14
- 13
- 3
- 11
- 12
  1
  2
+ 3
+ 15
+ 16
+ 6
  5
  4
- 16
- 15
- 7
+ 9
+ 10
+ 13
+ 14
  8
+ 7
+ 11
+ 12
 firsttab=4
 index=7
 [layout]
-windowlayout=560
+windowlayout=558
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -1369,11 +1369,11 @@ windowlayout=560
  nx=0
  ny=0
  ncx=1341
- ncy=48
+ ncy=46
  x=0
  y=0
  cx=1341
- cy=46
+ cy=44
  rcx=0
  rcy=0
  [debuggerfo.edit_options]
@@ -1384,7 +1384,8 @@ windowlayout=560
  value=Pascal
  [debuggerfo.file_history]
  value=/home/fred/fpd/src/fpdebug/fpdbglinuxclasses.pas
- history=22
+ history=20
+  /home/fred/fpd/src/fpdebug/fpdbglinuxclasses.pas
   /home/fred/Azote/source/Config.inc
   /home/fred/fpd/src/fpdbgdisasarm.pas
   /home/fred/Azote_fred/source/disasm/arch/AArch64/Azote.Disassembler.AArch64.pas
@@ -1392,7 +1393,6 @@ windowlayout=560
   /home/fred/fpd/src/fpdebug/fpdbgdisasx86.pp
   /home/fred/fpd/src/fpdebug/fpimgreaderelf.pas
   /home/fred/fpd/src/fpdebug/fpimgreaderelftypes.pas
-  /home/fred/fpd/src/fpdebug/fpdbglinuxclasses.pas
   /home/fred/fpd/src/fpdebug/fpdbgavrclasses.pas
   /home/fred/fpd/src/fpdebug_fred/fpdbgcommon.pas
   /home/fred/fpd/src/fpdebug_fred/fpdbgcallcontextinfo.pas
@@ -1405,8 +1405,6 @@ windowlayout=560
   /home/fred/Azote/tests/Test.pas
   /home/fred/Azote/source/disasm/arch/AArch64/aarch64-adt-asm.inc
   /home/fred/Azote/clt/Azote.pas
-  /home/fred/fpd/src/fpdloop.pas
-  /home/fred/fpd/src/fpdglobal.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]
@@ -1430,22 +1428,22 @@ windowlayout=560
  [sourcefo.files_tab]
  order=17
   0
-  9
-  10
-  6
-  14
-  13
-  3
-  11
-  12
   1
   2
+  3
+  15
+  16
+  6
   5
   4
-  16
-  15
-  7
+  9
+  10
+  13
+  14
   8
+  7
+  11
+  12
  firsttab=4
  index=7
  [confideufo.fontname]
