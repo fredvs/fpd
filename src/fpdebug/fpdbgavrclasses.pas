@@ -672,11 +672,9 @@ end;
 constructor TDbgAvrProcess.Create(const AFileName: string; AnOsClasses: TOSDbgClasses;
   AMemManager: TFpDbgMemManager; AProcessConfig: TDbgProcessConfig);
 begin
-  // Create remote configuration with default settings
-  FRemoteConfig := TRemoteConfig.Create;
-  // Update remote config with settings from debugger
   if Assigned(AProcessConfig) and (AProcessConfig is TRemoteConfig) then
   begin
+    FRemoteConfig := TRemoteConfig.Create;
     FRemoteConfig.Assign(AProcessConfig);
   end;
 

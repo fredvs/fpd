@@ -39,7 +39,7 @@ begin
   with Result do
   begin
     // TODO: Expand list when debugger support updated for other targets
-    machineType := {$if defined(CPU386) or defined(CPUI386)} mt386
+  machineType := {$if defined(CPU386) or defined(CPUI386)} mt386
                    {$elseif defined(CPUX86_64) or defined(CPUAMD64) or defined(CPUX64)} mtX86_64
                    {$elseif defined(CPUAARCH64)} mtAARCH64
                    {$elseif defined(CPUARM)} mtARM
@@ -72,7 +72,9 @@ end;
 procedure AssertFpDebugThreadIdNotMain(const AName: String);
 begin
   AssertFpDebugThreadId(AName);
-  assert(GetCurrentThreadId<>MainThreadID, AName + ' runnig outside main thread');
+
+// fred to fix  
+//  assert(GetCurrentThreadId<>MainThreadID, AName + ' runnig outside main thread');
 end;
 
 procedure SetCurrentFpDebugThreadIdForAssert(AnId: TThreadID);

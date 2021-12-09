@@ -109,11 +109,8 @@ begin
   inherited Create(ALoaderList, AMemManager);
 
   FSymbolList := TfpSymbolList.Create;
-   
-  //writeln ('ALoaderList.Count ' + inttostr(ALoaderList.Count));
   for i := 0 to ALoaderList.Count-1 do
     ALoaderList[i].ParseSymbolTable(FSymbolList);
- 
   FTargetInfo := ALoaderList.TargetInfo;
   if FSymbolList.Count > 0 then
     SetHasInfo;

@@ -55,8 +55,16 @@ findinfiledialog=61
  filefilterindex=0
  filefilter="*.pas" "*.pp" "*.inc"
  [findinfileadialogfo.findtext]
- value=SymbolCount =
+ value=EM_XTENSA
  history=20
+  EM_XTENSA
+  mtAARCH64
+  fred
+  AddBreak
+  sig
+  AddLocotion
+  eax
+  orig_rax
   SymbolCount =
   machineType
   ATargetInfo
@@ -69,16 +77,8 @@ findinfiledialog=61
   tprocess
   defaultsynctimeout
   /home/fred/ideu/s
-  Unknown command
-  ParamStr
-  timeout
-  chargement
-  GDB: Timeout
-  breakpoint
-  Initialize
-  'run'
  [findinfileadialogfo]
- stackedunder=finddialogfo
+ stackedunder=
  x=352
  y=364
  cx=339
@@ -784,8 +784,12 @@ envvarons=0
 [edit]
 hintwidth=0
 hintheight=0
-finddtext=maxint
+finddtext=mtARM
 findhistory=20
+ mtX86_64
+ AddBreak
+ CurrentProcess
+ SIGCHLD:
  maxint
  zero
  handlerun
@@ -802,21 +806,22 @@ findhistory=20
  back
  replace
  tprocess
- enter
- continue
- conitnue
- fred
 findoptions=1
-editpos=9
+editpos=14
  0,-1073741823
  0,-1073741823
  0,-1073741823
- 0,-1073741823
- 0,-1073741823
- 0,-1073741823
- 0,-1073741823
- 0,0
- 0,-1073741823
+ 0,1178
+ 0,5
+ 0,10
+ 0,482
+ 0,10
+ 0,327
+ 0,938
+ 0,138
+ 0,140
+ 0,157
+ 23,157
 bookmarks0=0
 bookmarks1=0
 bookmarks2=0
@@ -826,27 +831,47 @@ bookmarks5=0
 bookmarks6=0
 bookmarks7=0
 bookmarks8=0
-sourcefiles=9
+bookmarks9=0
+bookmarks10=0
+bookmarks11=0
+bookmarks12=0
+bookmarks13=0
+sourcefiles=14
  ${PROJECTDIR}/fpd.lpr
- ${PROJECTDIR}/fpdebug/fpdbgsymtablecontext.pas
- ${PROJECTDIR}/fpdebug/fpdbgdwarf.pas
- ${PROJECTDIR}/fpdebug/fpimgreaderelf.pas
+ /home/fred/fpc-ootb_322ok/compiler/aarch64/hlcgcpu.pas
  ${PROJECTDIR}/fpdebug/fpimgreaderwinpe.pas
- ${PROJECTDIR}/fpdebug/fpdbgcommon.pas
- ${PROJECTDIR}/fpdebug/fpimgreaderelf.pas
- ${PROJECTDIR}/fpdcommand.pas
  ${PROJECTDIR}/fpdebug/fpdbglinuxclasses.pas
-relpaths=9
+ ${PROJECTDIR}/fpdcommand.pas
+ ${PROJECTDIR}/fpdebug/fpdbgcommon.pas
+ ${PROJECTDIR}/fpdebug/fpdbgclasses.pp
+ ${PROJECTDIR}/fpdebug_fred/fpdbgcommon.pas
+ ${PROJECTDIR}/fpdebug/fpdbgcontroller.pas
+ ${PROJECTDIR}/fpdebug_fred/fpdbglinuxclasses.pas
+ ${PROJECTDIR}/fpdebug_fred/fpimgreaderelf.pas
+ ${PROJECTDIR}/fpdebug/fpimgreaderelf.pas
+ ${PROJECTDIR}/fpdebug_fred/fpimgreaderelftypes.pas
+ ${PROJECTDIR}/fpdebug/fpimgreaderelftypes.pas
+relpaths=14
  fpd.lpr
- fpdebug/fpdbgsymtablecontext.pas
- fpdebug/fpdbgdwarf.pas
- fpdebug/fpimgreaderelf.pas
+ fpc-ootb_322ok/compiler/aarch64/hlcgcpu.pas
  fpdebug/fpimgreaderwinpe.pas
- fpdebug/fpdbgcommon.pas
- fpdebug/fpimgreaderelf.pas
- fpdcommand.pas
  fpdebug/fpdbglinuxclasses.pas
-ismoduletexts=9
+ fpdcommand.pas
+ fpdebug/fpdbgcommon.pas
+ fpdebug/fpdbgclasses.pp
+ fpdebug_fred/fpdbgcommon.pas
+ fpdebug/fpdbgcontroller.pas
+ fpdebug_fred/fpdbglinuxclasses.pas
+ fpdebug_fred/fpimgreaderelf.pas
+ fpdebug/fpimgreaderelf.pas
+ fpdebug_fred/fpimgreaderelftypes.pas
+ fpdebug/fpimgreaderelftypes.pas
+ismoduletexts=14
+ 0
+ 0
+ 0
+ 0
+ 0
  0
  0
  0
@@ -861,20 +886,25 @@ moduleoptions=0
 visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
-order=9
+order=14
  0
  1
- 2
  3
- 7
- 8
- 4
- 5
+ 10
+ 11
+ 12
+ 13
+ 9
  6
+ 5
+ 7
+ 4
+ 8
+ 2
 firsttab=0
-index=4
+index=6
 [layout]
-windowlayout=543
+windowlayout=552
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -989,23 +1019,23 @@ windowlayout=543
  [findinfilefo]
  splitdir=0
  useroptions=268451947
- stackedunder=
+ stackedunder=mainfo
  parent=
  mdistate=0
  nx=0
  ny=0
  ncx=0
  ncy=0
- x=239
- y=115
- cx=678
- cy=414
+ x=109
+ y=230
+ cx=1368
+ cy=711
  rcx=0
  rcy=0
  [projecttreefo]
  splitdir=0
  useroptions=268484715
- stackedunder=mainfo
+ stackedunder=findinfilefo
  parent=
  mdistate=3
  nx=0
@@ -1304,7 +1334,7 @@ windowlayout=543
  x=0
  y=0
  cx=1356
- cy=61
+ cy=51
  rcx=0
  rcy=0
  [debuggerfo.basedock]
@@ -1320,7 +1350,7 @@ windowlayout=543
  x=0
  y=0
  cx=1356
- cy=69
+ cy=59
  rcx=0
  rcy=0
  [debuggerfo.edit_options]
@@ -1330,19 +1360,23 @@ windowlayout=543
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/fpd/src/fpdcommand.pas
- history=13
-  /home/fred/fpd/src/fpdcommand.pas
+ value=/home/fred/fpd/src/fpdebug/fpimgreaderelftypes.pas
+ history=17
   /home/fred/fpd/src/fpdebug/fpimgreaderelf.pas
+  /home/fred/fpd/src/fpdebug/fpdbglinuxclasses.pas
+  /home/fred/fpd/src/fpdebug/fpdbgavrclasses.pas
+  /home/fred/fpd/src/fpdebug_fred/fpdbgcommon.pas
+  /home/fred/fpd/src/fpdebug_fred/fpdbgcallcontextinfo.pas
+  /home/fred/fpd/src/fpdebug/fpdbgclasses.pp
+  /home/fred/fpd/src/fpdebug/fpdbgcommon.pas
   /home/fred/fpd/src/fpdebug/fpdbgsymtablecontext.pas
   /home/fred/fpd/src/fpdebug/fpimgreaderelftypes.pas
-  /home/fred/fpd/src/fpdebug/fpdbgclasses.pp
   /home/fred/Azote/clt/Azote.dpr
+  /home/fred/fpd/src/fpdcommand.pas
   /home/fred/fpd/src/fpd.lpr
   /home/fred/Azote/tests/Test.pas
   /home/fred/Azote/source/disasm/arch/AArch64/aarch64-adt-asm.inc
   /home/fred/Azote/clt/Azote.pas
-  /home/fred/fpd/src/fpdebug/fpdbgavrclasses.pas
   /home/fred/fpd/src/fpdloop.pas
   /home/fred/fpd/src/fpdglobal.pas
  [debuggerfo.project_options]
@@ -1362,22 +1396,27 @@ windowlayout=543
  x=0
  y=0
  cx=1356
- cy=535
+ cy=545
  rcx=0
  rcy=0
  [sourcefo.files_tab]
- order=9
+ order=14
   0
   1
-  2
   3
-  7
-  8
-  4
-  5
+  10
+  11
+  12
+  13
+  9
   6
+  5
+  7
+  4
+  8
+  2
  firsttab=0
- index=4
+ index=6
  [confideufo.fontname]
  value=stf_default
  [confideufo.usedefaulteditoroptions]
@@ -1413,9 +1452,9 @@ windowlayout=543
  ncx=0
  ncy=0
  x=0
- y=64
+ y=54
  cx=1356
- cy=535
+ cy=545
  rcx=0
  rcy=0
 [targetconsole]

@@ -242,6 +242,7 @@ var
   e, Id: Integer;
   Line: Cardinal;
   bp: TFpInternalBreakpoint;
+  // bp: TFpDbgBreakpoint;
 begin
   CallProcessLoop:=false;
   if GController.MainProcess = nil
@@ -289,7 +290,9 @@ begin
       if e = 0 then
         bp := GController.CurrentProcess.AddBreak(Address)
       else // Assume it is a proc/func name
-        bp := GController.CurrentProcess.AddBreak(P);
+      // fred to fix
+        bp := GController.CurrentProcess.AddBreak(P)
+      ;
     end;
   end
   else begin

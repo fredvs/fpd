@@ -81,7 +81,7 @@ type
   public
     class function isValid(ASource: TDbgFileLoader): Boolean; override;
     class function UserName: AnsiString; override;
-    constructor Create(ASource: TDbgFileLoader; ADebugMap: TObject; OwnSource: Boolean); override;
+    constructor Create(ASource: TDbgFileLoader; ADebugMap: TObject; ALoadedTargetImageAddr: TDbgPtr; OwnSource: Boolean); override;
     destructor Destroy; override;
     procedure ParseSymbolTable(AFpSymbolInfo: TfpSymbolList); override;
 
@@ -90,6 +90,9 @@ type
   end;
 
 implementation
+
+var
+  DBG_WARNINGS: PLazLoggerLogGroup;
 
 type
   TElf32symbol=record
@@ -101,7 +104,7 @@ type
     st_shndx : word;
   end;
   PElf32symbolArray = ^TElf32symbolArray;
-  TElf32symbolArray = array[0..maxsmallint] of TElf32symbol;
+  TElf32symbolArray = array[0..maxSmallint] of TElf32symbol;
 
   TElf64symbol=record
     st_name  : longword;
@@ -112,7 +115,9 @@ type
     st_size  : qword;
   end;
   PElf64symbolArray = ^TElf64symbolArray;
-  TElf64symbolArray = array[0..maxsmallint] of TElf64symbol;
+  TElf64symbolArray = array[0..maxSmallint] of TElf64symbol;
+
+
 
 const
   // Symbol-map section name
@@ -172,7 +177,7 @@ begin
 
   sz := hdr.e_shetsize * hdr.e_shnum;
   if sz > LongWord(length(sect)*sizeof(Elf32_shdr)) then begin
-    debugln(['TElfFile.Load32BitFile Size of SectHdrs is ', sz, ' expected ', LongWord(length(sect)*sizeof(Elf32_shdr))]);
+    debugln(DBG_WARNINGS, ['TElfFile.Load32BitFile Size of SectHdrs is ', sz, ' expected ', LongWord(length(sect)*sizeof(Elf32_shdr))]);
     sz := LongWord(length(sect)*sizeof(Elf32_shdr));
   end;
   //ALoader.Read(sect[0], sz);
@@ -211,7 +216,7 @@ begin
 
   sz := hdr.e_shentsize * hdr.e_shnum;
   if sz > LongWord(length(sect)*sizeof(Elf64_shdr)) then begin
-    debugln(['TElfFile.Load64BitFile Size of SectHdrs is ', sz, ' expected ', LongWord(length(sect)*sizeof(Elf64_shdr))]);
+    debugln(DBG_WARNINGS, ['TElfFile.Load64BitFile Size of SectHdrs is ', sz, ' expected ', LongWord(length(sect)*sizeof(Elf64_shdr))]);
     sz := LongWord(length(sect)*sizeof(Elf64_shdr));
   end;
   //ALoader.Read(sect[0], sz);
@@ -270,8 +275,8 @@ begin
     end;
 
     case ident[EI_OSABI] of
-       ELFOSABI_SYSV, ELFOSABI_LINUX: FTargetInfo.OS := osLinux;
-       ELFOSABI_STANDALONE: FTargetInfo.OS := osEmbedded;
+      ELFOSABI_LINUX: FTargetInfo.OS := osLinux;
+      ELFOSABI_STANDALONE: FTargetInfo.OS := osEmbedded;
     else
       FTargetInfo.OS := osNone;  // Will take a guess after machine type is available
     end;
@@ -395,12 +400,14 @@ begin
   Result := 'ELF executable';
 end;
 
-constructor TElfDbgSource.Create(ASource: TDbgFileLoader; ADebugMap: TObject; OwnSource: Boolean);
+constructor TElfDbgSource.Create(ASource: TDbgFileLoader; ADebugMap: TObject; ALoadedTargetImageAddr: TDbgPtr; OwnSource: Boolean);
 var
   DbgFileName, SourceFileName: String;
   crc: Cardinal;
   NewFileLoader: TDbgFileLoader;
 begin
+  inherited Create(ASource, ADebugMap, ALoadedTargetImageAddr, OwnSource);
+
   FSections := TStringListUTF8Fast.Create;
   FSections.Sorted := True;
   //FSections.Duplicates := dupError;
@@ -410,6 +417,8 @@ begin
   fOwnSource := OwnSource;
   fElfFile := TElfFile.Create;
   fElfFile.LoadFromFile(FFileLoader);
+
+  SetImageBase(LoadedTargetImageAddr);
 
   LoadSections;
   // check external debug file
@@ -436,8 +445,6 @@ begin
   end;
 
   FTargetInfo := fElfFile.FTargetInfo;
-
-  inherited Create(ASource, ADebugMap, OwnSource);
 end;
 
 destructor TElfDbgSource.Destroy;
@@ -472,12 +479,10 @@ begin
     begin
       SymbolArr64:=PDbgImageSectionEx(p)^.Sect.RawData;
       SymbolCount := PDbgImageSectionEx(p)^.Sect.Size div sizeof(TElf64symbol);
-      
-      writeln('SymbolCount = ' + inttostr(SymbolCount));
-      
       for i := 0 to SymbolCount-1 do
       begin
-        {$push}
+        begin
+          {$push}
           {$R-}
           if SymbolArr64^[i].st_name<>0 then
             begin
@@ -492,7 +497,8 @@ begin
             AfpSymbolInfo.Add(SymbolName, TDbgPtr(SymbolArr64^[i].st_value+ImageBase),
               Sect^.Address + Sect^.Size);
             end;
-         {$pop}
+          {$pop}
+        end
       end;
     end
     else
@@ -501,8 +507,7 @@ begin
       SymbolCount := PDbgImageSectionEx(p)^.Sect.Size div sizeof(TElf32symbol);
       for i := 0 to SymbolCount-1 do
       begin
-        {$push}
-          {$R-}
+        begin
           if SymbolArr32^[i].st_name<>0 then
             begin
             SectIdx := SymbolArr32^[i].st_shndx;
@@ -516,13 +521,15 @@ begin
             AfpSymbolInfo.Add(SymbolName, TDBGPtr(SymbolArr32^[i].st_value+ImageBase),
               Sect^.Address + Sect^.Size);
             end;
-           {$pop} 
         end
-     end;
+      end;
+    end;
   end;
 end;
 
 initialization
+  DBG_WARNINGS := DebugLogger.FindOrRegisterLogGroup('DBG_WARNINGS' {$IFDEF DBG_WARNINGS} , True {$ENDIF} );
+
   RegisterImageReaderClass( TElfDbgSource );
 
 end.
