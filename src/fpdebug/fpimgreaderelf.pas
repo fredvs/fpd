@@ -275,7 +275,7 @@ begin
     end;
 
     case ident[EI_OSABI] of
-      ELFOSABI_LINUX: FTargetInfo.OS := osLinux;
+      ELFOSABI_SYSV, ELFOSABI_LINUX: FTargetInfo.OS := osLinux;
       ELFOSABI_STANDALONE: FTargetInfo.OS := osEmbedded;
     else
       FTargetInfo.OS := osNone;  // Will take a guess after machine type is available
@@ -481,7 +481,6 @@ begin
       SymbolCount := PDbgImageSectionEx(p)^.Sect.Size div sizeof(TElf64symbol);
       for i := 0 to SymbolCount-1 do
       begin
-        begin
           {$push}
           {$R-}
           if SymbolArr64^[i].st_name<>0 then
@@ -498,8 +497,7 @@ begin
               Sect^.Address + Sect^.Size);
             end;
           {$pop}
-        end
-      end;
+       end;
     end
     else
     begin
@@ -507,7 +505,8 @@ begin
       SymbolCount := PDbgImageSectionEx(p)^.Sect.Size div sizeof(TElf32symbol);
       for i := 0 to SymbolCount-1 do
       begin
-        begin
+         {$push}
+          {$R-}
           if SymbolArr32^[i].st_name<>0 then
             begin
             SectIdx := SymbolArr32^[i].st_shndx;
@@ -521,7 +520,7 @@ begin
             AfpSymbolInfo.Add(SymbolName, TDBGPtr(SymbolArr32^[i].st_value+ImageBase),
               Sect^.Address + Sect^.Size);
             end;
-        end
+        {$pop}
       end;
     end;
   end;
