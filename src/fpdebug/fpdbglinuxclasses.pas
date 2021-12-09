@@ -17,7 +17,18 @@ uses
   StrUtils,
   Types,
   FpDbgClasses,
-  FpDbgLoader, FpDbgDisasX86,
+  FpDbgLoader, 
+
+  // fred arm
+  {$if defined(CPU386) or defined(CPUI386)
+   or defined(CPUAMD64) or defined(CPUX64)}
+   FpDbgDisasX86,
+  {$endif}
+  
+  {$if defined(CPUAARCH64) or defined(CPUARM)}
+   FpDbgDisasArm,
+  {$endif} 
+  
   DbgIntfBaseTypes, DbgIntfDebuggerBase,
   FpDbgLinuxExtra,
   FpDbgInfo,
@@ -1868,7 +1879,17 @@ initialization
   RegisterDbgOsClasses(TOSDbgClasses.Create(
     TDbgLinuxProcess,
     TDbgLinuxThread,
-    TX86AsmDecoder
+    
+    // fred arm
+  {$if defined(CPU386) or defined(CPUI386)
+   or defined(CPUAMD64) or defined(CPUX64)}
+   TX86AsmDecoder
+  {$endif}
+  
+  {$if defined(CPUAARCH64) or defined(CPUARM)}
+   TX86ArmDecoder
+  {$endif} 
+   
   ));
 
 end.

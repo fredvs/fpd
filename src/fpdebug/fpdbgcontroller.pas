@@ -11,7 +11,6 @@ uses
   Maps,
   {$ifdef FORCE_LAZLOGGER_DUMMY} LazLoggerDummy {$else} LazLoggerBase {$endif}, LazClasses,
   DbgIntfBaseTypes, DbgIntfDebuggerBase,
-  FpDbgDisasX86,
   FpDbgClasses, FpDbgCallContextInfo, FpDbgUtil,
   {$ifdef windows}  FpDbgWinClasses,  {$endif}
   {$ifdef darwin}  FpDbgDarwinClasses,  {$endif}

@@ -156,6 +156,10 @@ var
   CodeBin: array[0..20] of byte;
   p: Pointer;
   i: integer;
+   // fred arm
+  {$if defined(CPUAARCH64) or defined(CPUARM)}
+   astr :  string;
+  {$endif} 
 begin
   WriteLN();
   a     := GController.CurrentThread.GetInstructionPointerRegisterValue;
@@ -172,9 +176,20 @@ begin
       Exit;
     end;
     p := @CodeBin;
-
+    
+    
+    // fred arm
+  {$if defined(CPU386) or defined(CPUI386)
+   or defined(CPUAMD64) or defined(CPUX64)}
     GController.CurrentProcess.Disassembler
-      .Disassemble(p, CodeBytes, Code);
+        .Disassemble(p, CodeBytes, Code);
+  {$endif}
+  
+  {$if defined(CPUAARCH64) or defined(CPUARM)}
+   astr := FormatAddress(a);
+   GController.CurrentProcess.Disassembler
+    .Disassemble(pointer(astr), CodeBytes, Code);
+  {$endif} 
 
     WriteLN(' ', CodeBytes: 20, '    ', Code);
     Inc(a, PtrUInt(p) - PtrUInt(@CodeBin));
