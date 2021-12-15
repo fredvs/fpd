@@ -67,7 +67,8 @@ type
 {$endif cpu64}
 
 {$if defined(darwin) or defined(CPUAARCH64) or defined(CPUARM)} 
- Function ptrace(ptrace_request: cInt; pid: TPid; addr:pointer; data:pointer): cint; cdecl; external clib name 'ptrace';
+ Function ptrace(ptrace_request: cInt; pid: TPid; addr:pointer; data:pointer): cint; cdecl; external
+ {$if defined(darwin)} clib {$endif} name 'ptrace';
 {$else}
 function Do_SysCall(sysnr,param1,param2,param3,param4:TSysParam):TSysResult; {$ifdef cpui386}register;{$endif} external name 'FPC_SYSCALL4';
 
