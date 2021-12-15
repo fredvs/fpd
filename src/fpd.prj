@@ -55,28 +55,28 @@ findinfiledialog=61
  filefilterindex=0
  filefilter="*.pas" "*.pp" "*.inc"
  [findinfileadialogfo.findtext]
- value=TArmAsmDecoder
+ value=define
  history=20
+  define
+  Setx86EFlagsValue
+  FpDbgLinuxclasses
+  FpDbgLinuxExtra
+  FpDbgLinuxClasses
+  PTRACE_
+  PTRACE_GETREG
+  GetInstructionPointerRegisterValue
+  run1
+  exception at
+  init
+  range check
+  HandleInit
+  CallProcessLoop
   TArmAsmDecoder
   TX86ArmDecoder
   fpdbgdisas
   aarch64
   TDBGPtr
   TAvrAsmInstruction
-  Disassemble(
-  tazoteoption
-  TA64Instruction
-  disas
-  TX86AsmDecoder
-  fpdbgdisasx86
-  EM_XTENSA
-  mtAARCH64
-  fred
-  AddBreak
-  sig
-  AddLocotion
-  eax
-  orig_rax
  [findinfileadialogfo]
  stackedunder=
  x=352
@@ -88,8 +88,8 @@ finddialog=8
  value=0
  [finddialogfo]
  stackedunder=
- x=852
- y=409
+ x=522
+ y=219
  cx=234
  cy=269
 replacedialog=18
@@ -198,7 +198,7 @@ options=114
  value=
  [projectoptionsfo.makegroupbox]
  firsttab=0
- index=3
+ index=2
  [projectoptionsfo.exceptionsgrid]
  propcolwidthref=788
  width0=47
@@ -219,7 +219,7 @@ options=114
  index=1
  [projectoptionsfo.setting_tab]
  firsttab=0
- index=1
+ index=2
  [projectoptionsfo]
  stackedunder=
  x=398
@@ -492,10 +492,10 @@ makeoptionson=9
  200
  206
  255
+ 4091
+ 4091
  4095
- 4095
- 4095
- 4095
+ 4091
 compilerusedon=29
  3895
  0
@@ -789,8 +789,15 @@ envvarons=0
 [edit]
 hintwidth=0
 hintheight=0
-finddtext=TAvrAsmInstruction
+finddtext=r0
 findhistory=20
+ r0
+ Setx86EFlagsValue
+ regs32
+ .run
+ .run(
+ init
+ CallProcessLoop
  TAvrAsmInstruction
  Disassemble
  TAvrAsmDecoder
@@ -804,21 +811,8 @@ findhistory=20
  zero
  handlerun
  run
- machinety
- HandleHelp
- help
- initi
- initti
- initialize
- divizion
 findoptions=1
-editpos=17
- 0,-1073741823
- 0,-1073741823
- 0,-1073741823
- 0,-1073741823
- 0,-1073741823
- 0,1889
+editpos=16
  0,-1073741823
  0,-1073741823
  0,-1073741823
@@ -827,9 +821,14 @@ editpos=17
  0,-1073741823
  0,-1073741823
  0,-1073741823
+ 0,6
+ 64,68
+ 0,-1073741823
+ 0,22
  0,-1073741823
  0,-1073741823
- 0,-1073741823
+ 0,87
+ 0,41
 bookmarks0=0
 bookmarks1=0
 bookmarks2=0
@@ -846,45 +845,41 @@ bookmarks12=0
 bookmarks13=0
 bookmarks14=0
 bookmarks15=0
-bookmarks16=0
-sourcefiles=17
+sourcefiles=16
  ${PROJECTDIR}/fpd.lpr
- ${PROJECTDIR}/fpdebug/fpimgreaderelf.pas
- ${PROJECTDIR}/fpdebug/fpdbgdisasx86.pp
- ${PROJECTDIR}/fpdebug/fpdbgdisasavr.pp
  ${PROJECTDIR}/fpdebug/fpdbgcontroller.pas
- ${PROJECTDIR}/fpdebug/fpdbglinuxclasses.pas
- ${PROJECTDIR}/fpdbgdisasarm.pas
- ${PROJECTDIR}/fpdloop.pas
- /home/fred/Azote/source/Config.inc
- ${PROJECTDIR}/Azote/az_aarch64.pas
- ${PROJECTDIR}/Azote/Azote.pas
- ${PROJECTDIR}/fpdebug/fpdbglinuxclasses.pas
- ${PROJECTDIR}/fpdebug/fpdebug.pas
- ${PROJECTDIR}/fpdloop.pas
+ ${PROJECTDIR}/fpdebug/fpdbglinuxarmclasses.pas
+ ${PROJECTDIR}/${PROJECTDIR}/fpdbgdisasarm.pas
  ${PROJECTDIR}/fpdebug/fpdbgcommon.pas
- ${PROJECTDIR}/fpdebug/fpdbgclasses.pp
+ ${PROJECTDIR}/fpdcommand.pas
+ ${PROJECTDIR}/fpd.lpr
+ ${PROJECTDIR}/fpdebug/fpdbgavrclasses.pas
  ${PROJECTDIR}/fpdebug/fpdbgdarwinclasses.pas
-relpaths=17
+ ${PROJECTDIR}/fpdebug/fpdbglinuxextra.pas
+ ${PROJECTDIR}/fpdebug/fpdbgcontroller.pas
+ ${PROJECTDIR}/fpdebug/fpdbgcontroller.pas
+ ${PROJECTDIR}/fpdebug/fpdbgclasses.pp
+ /home/fred/fpdlast/src/fpdebug/fpdbglinuxclasses.pas
+ /home/fred/fpdlast/src/fpdebug/fpdbglinuxextra.pas
+ ${PROJECTDIR}/fpdebug/fpdbgcommon.pas
+relpaths=16
  fpd.lpr
- fpdebug/fpimgreaderelf.pas
- fpdebug/fpdbgdisasx86.pp
- fpdebug/fpdbgdisasavr.pp
  fpdebug/fpdbgcontroller.pas
- fpdebug/fpdbglinuxclasses.pas
- fpdbgdisasarm.pas
- fpdloop.pas
- Azote/source/Config.inc
- Azote/az_aarch64.pas
- Azote/Azote.pas
- fpdebug/fpdbglinuxclasses.pas
- fpdebug/fpdebug.pas
- fpdloop.pas
+ fpdebug/fpdbglinuxarmclasses.pas
+ ${PROJECTDIR}/fpdbgdisasarm.pas
  fpdebug/fpdbgcommon.pas
- fpdebug/fpdbgclasses.pp
+ fpdcommand.pas
+ fpd.lpr
+ fpdebug/fpdbgavrclasses.pas
  fpdebug/fpdbgdarwinclasses.pas
-ismoduletexts=17
- 0
+ fpdebug/fpdbglinuxextra.pas
+ fpdebug/fpdbgcontroller.pas
+ fpdebug/fpdbgcontroller.pas
+ fpdebug/fpdbgclasses.pp
+ fpdlast/src/fpdebug/fpdbglinuxclasses.pas
+ ../fpdlast/src/fpdebug/fpdbglinuxextra.pas
+ fpdebug/fpdbgcommon.pas
+ismoduletexts=16
  0
  0
  0
@@ -906,28 +901,27 @@ moduleoptions=0
 visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
-order=17
+order=16
  0
  1
  2
- 3
- 15
- 16
- 6
  5
- 4
- 9
- 10
- 13
- 14
  8
+ 4
+ 6
+ 9
+ 3
+ 13
+ 10
  7
- 11
  12
-firsttab=4
+ 11
+ 14
+ 15
+firsttab=6
 index=7
 [layout]
-windowlayout=558
+windowlayout=557
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -1042,23 +1036,23 @@ windowlayout=558
  [findinfilefo]
  splitdir=0
  useroptions=268451947
- stackedunder=
+ stackedunder=mainfo
  parent=
  mdistate=0
  nx=0
  ny=0
  ncx=0
  ncy=0
- x=0
+ x=2
  y=57
- cx=1368
+ cx=1364
  cy=711
  rcx=0
  rcy=0
  [projecttreefo]
  splitdir=0
  useroptions=268484715
- stackedunder=mainfo
+ stackedunder=findinfilefo
  parent=
  mdistate=3
  nx=0
@@ -1357,7 +1351,7 @@ windowlayout=558
  x=0
  y=0
  cx=1356
- cy=49
+ cy=51
  rcx=0
  rcy=0
  [debuggerfo.basedock]
@@ -1369,11 +1363,11 @@ windowlayout=558
  nx=0
  ny=0
  ncx=1341
- ncy=46
+ ncy=29
  x=0
  y=0
- cx=1341
- cy=44
+ cx=1356
+ cy=28
  rcx=0
  rcy=0
  [debuggerfo.edit_options]
@@ -1383,28 +1377,28 @@ windowlayout=558
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/fpd/src/fpdebug/fpdbglinuxclasses.pas
+ value=/home/fred/fpd/src/fpdebug/fpdbglinuxextra.pas
  history=20
-  /home/fred/fpd/src/fpdebug/fpdbglinuxclasses.pas
-  /home/fred/Azote/source/Config.inc
-  /home/fred/fpd/src/fpdbgdisasarm.pas
-  /home/fred/Azote_fred/source/disasm/arch/AArch64/Azote.Disassembler.AArch64.pas
+  /home/fred/fpd/src/fpdebug/fpdbgdarwinclasses.pas
+  /home/fred/fpdlast/src/fpdebug/fpdbglinuxclasses.pas
+  /home/fred/fpdlast/src/fpdebug/fpdbgcallcontextinfo.pas
+  /home/fred/fpd/src/Azote/az_aarch64.pas
+  /home/fred/fpd/src/Azote/aarch64-classes.inc
+  /home/fred/fpd/src/Azote/aarch64-regs.inc
+  /home/fred/fpd/src/fpdtype.pas
+  /home/fred/fpd/src/fpdebug/fpdbglinux_arm_classes.pas
   /home/fred/fpd/src/fpdebug/fpdbgdisasavr.pp
-  /home/fred/fpd/src/fpdebug/fpdbgdisasx86.pp
-  /home/fred/fpd/src/fpdebug/fpimgreaderelf.pas
-  /home/fred/fpd/src/fpdebug/fpimgreaderelftypes.pas
-  /home/fred/fpd/src/fpdebug/fpdbgavrclasses.pas
-  /home/fred/fpd/src/fpdebug_fred/fpdbgcommon.pas
-  /home/fred/fpd/src/fpdebug_fred/fpdbgcallcontextinfo.pas
-  /home/fred/fpd/src/fpdebug/fpdbgclasses.pp
-  /home/fred/fpd/src/fpdebug/fpdbgcommon.pas
-  /home/fred/fpd/src/fpdebug/fpdbgsymtablecontext.pas
-  /home/fred/Azote/clt/Azote.dpr
-  /home/fred/fpd/src/fpdcommand.pas
+  /home/fred/fpd/src/fpdbglinuxarmclasses.pas
   /home/fred/fpd/src/fpd.lpr
-  /home/fred/Azote/tests/Test.pas
-  /home/fred/Azote/source/disasm/arch/AArch64/aarch64-adt-asm.inc
-  /home/fred/Azote/clt/Azote.pas
+  /home/fred/fpd/src/Azote/aarch64-oprnds.inc
+  /home/fred/fpd/src/Azote/aarch64-lookup.inc
+  /home/fred/fpd/src/Azote/aarch64-insns.inc
+  /home/fred/fpd/src/Azote/aarch64-fields.inc
+  /home/fred/fpd/src/Azote/aarch64-aliascond.inc
+  /home/fred/fpd/src/Azote/aarch64-adt-pp.inc
+  /home/fred/fpd/src/Azote/aarch64-adt-asm.inc
+  /home/fred/fpd/src/Azote/aarch64-tbl.inc
+  /home/fred/fpd/src/Azote/Azote.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]
@@ -1422,29 +1416,28 @@ windowlayout=558
  x=0
  y=0
  cx=1356
- cy=547
+ cy=545
  rcx=0
  rcy=0
  [sourcefo.files_tab]
- order=17
+ order=16
   0
   1
   2
-  3
-  15
-  16
-  6
   5
-  4
-  9
-  10
-  13
-  14
   8
+  4
+  6
+  9
+  3
+  13
+  10
   7
-  11
   12
- firsttab=4
+  11
+  14
+  15
+ firsttab=6
  index=7
  [confideufo.fontname]
  value=stf_default
@@ -1456,15 +1449,15 @@ windowlayout=558
  useroptions=268451947
  stackedunder=confdebuggerfo
  parent=
- mdistate=0
+ mdistate=3
  nx=0
  ny=0
  ncx=0
  ncy=0
  x=183
  y=113
- cx=352
- cy=277
+ cx=369
+ cy=307
  rcx=0
  rcy=0
  wsize=0
@@ -1481,9 +1474,9 @@ windowlayout=558
  ncx=0
  ncy=0
  x=0
- y=52
+ y=54
  cx=1356
- cy=547
+ cy=545
  rcx=0
  rcy=0
 [targetconsole]

@@ -36,10 +36,13 @@ unit FpDbgDisasArm;
 interface
 
 uses
-  SysUtils, az_AArch64,
+  SysUtils,
+  Azote.Disassembler.AArch64 in '.\Azote\disasm\arch\AArch64\Azote.Disassembler.AArch64.pas',
+  Azote.Printer.AArch64 in '.\Azote\print\arch\AArch64\Azote.Printer.AArch64.pas',
   FpDbgUtil, FpDbgInfo, DbgIntfBaseTypes, FpdMemoryTools, 
   {$ifdef FORCE_LAZLOGGER_DUMMY} LazLoggerDummy {$else} LazLoggerBase {$endif},
   FpDbgClasses;
+
 
 type
   //The function Disassemble decodes the instruction at the given address.

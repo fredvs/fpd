@@ -36,7 +36,7 @@
 
 program fpd;
 {$mode objfpc}{$H+}
-{$APPTYPE CONSOLE}
+
 uses
 {$ifdef unix}
   cthreads,

@@ -404,11 +404,13 @@ var
 i : integer = 0;
 begin
   inherited Initialize;
+  
   StepNum       := 0;
   FMemReader    := TPDDbgMemReader.Create;
   FMemConvertor := TFpDbgMemConvertorLittleEndian.Create;
   FMemManager   := TFpDbgMemManager.Create(FMemReader, FMemConvertor);
   GController   := TDbgController.Create(FMemManager);
+
 
   if ParamCount > 0 then
     for i := 1 to ParamCount do
@@ -420,6 +422,7 @@ begin
     
   //TODO: Maybe DebugLogger.OnLog ....
   //GController.OnLog:=@OnLog;
+
   GController.OnHitBreakpointEvent := @GControllerHitBreakpointEvent;
   GController.OnCreateProcessEvent := @GControllerCreateProcessEvent;
   GController.OnExceptionEvent     := @GControllerExceptionEvent;

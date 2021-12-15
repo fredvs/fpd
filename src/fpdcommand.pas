@@ -228,6 +228,7 @@ begin
   else
     begin
     CallProcessLoop:=true;
+    
     IniState := isInit;   
     writeln('Init done.');
     end;

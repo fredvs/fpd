@@ -19,8 +19,50 @@ order16=0
 order17=0
 order18=0
 [projectoptions]
-projectdir=/home/fred/fpd/src/Azote
-projectfilename=/home/fred/fpd/src/Azote/azote.prj
+projectdir=/home/pi/azotenew
+projectfilename=/home/pi/azotenew/azote.prj
+findinfiledialog=41
+ [findinfileadialogfo.subdirs]
+ value=0
+ [findinfileadialogfo.incurrentfile]
+ value=0
+ [findinfileadialogfo.inopenfiles]
+ value=0
+ [findinfileadialogfo.wholeword]
+ value=0
+ [findinfileadialogfo.indirectories]
+ value=0
+ [findinfileadialogfo.inprojectdir]
+ value=1
+ [findinfileadialogfo.casesensitive]
+ value=0
+ [findinfileadialogfo.mask]
+ value="*.pas" "*.pp" "*.inc"
+ history=1
+  "*.pas" "*.pp" "*.inc"
+ [findinfileadialogfo.dir]
+ filenames=1
+  /home/pi/Azote-master/clt/
+ filecolwidth=0
+ x=0
+ y=0
+ cx=0
+ cy=0
+ filehistory=0
+ filefilterindex=0
+ filefilter=
+ [findinfileadialogfo.findtext]
+ value=.res
+ history=3
+  .res
+  azote.res
+  
+ [findinfileadialogfo]
+ stackedunder=
+ x=707
+ y=43
+ cx=234
+ cy=308
 options=114
  [projectoptionsfo.toolshortcuts]
  dropdowncolwidths=3
@@ -41,7 +83,7 @@ options=114
  sortdescend6=0
  width7=55
  sortdescend7=0
- width8=83
+ width8=86
  sortdescend8=0
  width9=327
  sortdescend9=0
@@ -159,7 +201,7 @@ targpref=-o
 befcommand=0
 aftcommand=0
 makeoptions=6
- -l -Mobjfpc -Schi
+ -l -Mobjfpc -Sh
  -FE.
  -FUunits
  -B
@@ -271,7 +313,6 @@ checkmethods=1
 colorerror=-1610612712
 colorwarning=-1610612717
 colornote=-1610612716
-colorhint=15134207
 usercolors=30
  0
  0
@@ -649,7 +690,7 @@ files=
  a=0,8228,6,Text Files
  )
 [componentstore]
-storedir=/home/fred/mseide-msegui/apps/ide/compstore/
+storedir=/home/pi/mseide-msegui/apps/ide/compstore/
 filename=
 [components]
 [selecteditpage]
@@ -675,38 +716,18 @@ findhistory=7
  sort
  uses
 findoptions=1
-editpos=6
- 0,-1073741823
- 0,-1073741823
- 0,5
- 0,-1073741823
- 0,-1073741823
- 0,12
+editpos=2
+ 0,19
+ 13,27
 bookmarks0=0
 bookmarks1=0
-bookmarks2=0
-bookmarks3=0
-bookmarks4=0
-bookmarks5=0
-sourcefiles=6
- ${PROJECTDIR}/azot.pas
- ${PROJECTDIR}/units/x86_64-linux/dummy
- ${PROJECTDIR}/Azote/Azote.pas
- /home/fred/Azote/source/disasm/arch/AArch64/aarch64-adt-asm.inc
- /home/fred/Azote/clt/Azote.dpr
- ${PROJECTDIR}/Azote/AArch64.pas
-relpaths=6
- azot.pas
- units/x86_64-linux/dummy
+sourcefiles=2
+ /home/pi/Azote-master/source/disasm/arch/AArch64/Azote.Disassembler.AArch64.pas
+ ${PROJECTDIR}/Azote.pas
+relpaths=2
+ Azote-master/source/disasm/arch/AArch64/Azote.Disassembler.AArch64.pas
  Azote.pas
- source/disasm/arch/AArch64/aarch64-adt-asm.inc
- Azote/clt/Azote.dpr
- AArch64.pas
-ismoduletexts=6
- 0
- 0
- 0
- 0
+ismoduletexts=2
  0
  0
 modules=0
@@ -714,17 +735,10 @@ moduleoptions=0
 visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
-order=6
- 0
- 1
- 2
- 5
- 3
- 4
 firsttab=0
-index=3
+index=1
 [layout]
-windowlayout=554
+windowlayout=531
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -738,10 +752,10 @@ windowlayout=554
  ny=0
  ncx=0
  ncy=0
- x=125
- y=82
- cx=1211
- cy=585
+ x=34
+ y=45
+ cx=1231
+ cy=621
  rcx=0
  rcy=0
  wsize=0
@@ -763,8 +777,8 @@ windowlayout=554
  ny=0
  ncx=0
  ncy=0
- x=493
- y=171
+ x=495
+ y=172
  cx=497
  cy=314
  rcx=0
@@ -781,10 +795,10 @@ windowlayout=554
  ny=0
  ncx=0
  ncy=0
- x=444
- y=431
- cx=418
- cy=126
+ x=362
+ y=177
+ cx=355
+ cy=107
  rcx=0
  rcy=0
  wsize=0
@@ -793,7 +807,7 @@ windowlayout=554
  [memoryfo]
  splitdir=0
  useroptions=268451963
- stackedunder=dialogfilesfo
+ stackedunder=findmessagefo
  parent=
  mdistate=0
  nx=0
@@ -855,28 +869,31 @@ windowlayout=554
  [projecttreefo]
  splitdir=0
  useroptions=268484715
- parent=mainfo.panel1.container
- visible=1
- mdistate=0
+ stackedunder=mainfo
+ parent=
+ mdistate=3
  nx=0
  ny=0
  ncx=0
  ncy=0
- x=0
- y=0
- cx=205
- cy=380
+ x=24
+ y=95
+ cx=181
+ cy=449
  rcx=0
  rcy=0
+ wsize=0
+ active=0
+ visible=1
  [projecttreefo.grid]
- propcolwidthref=88
- width0=117
+ propcolwidthref=28
+ width0=141
  sortdescend0=0
- width1=86
+ width1=26
  sortdescend1=0
  sorted=0
- col=0
- row=1
+ col=1
+ row=0
  rowheight=16
  [stackfo]
  splitdir=0
@@ -887,10 +904,10 @@ windowlayout=554
  ny=0
  ncx=0
  ncy=0
- x=423
- y=321
- cx=344
- cy=155
+ x=337
+ y=280
+ cx=427
+ cy=144
  rcx=0
  rcy=0
  wsize=0
@@ -915,14 +932,14 @@ windowlayout=554
  active=0
  visible=0
  [watchpointsfo.grid]
- propcolwidthref=332
+ propcolwidthref=352
  sortdescend0=0
  values1=0
  values1_ci=-1
  width1=33
  sortdescend1=0
  values2=0
- width2=149
+ width2=158
  sortdescend2=0
  width4=34
  sortdescend4=0
@@ -931,7 +948,7 @@ windowlayout=554
  width5=38
  sortdescend5=0
  values6=0
- width6=172
+ width6=184
  sortdescend6=0
  [breakpointsfo]
  splitdir=0
@@ -956,9 +973,9 @@ windowlayout=554
  value=0
  [objectinspectorfo.grid]
  propcolwidthref=242
- width0=108
+ width0=58
  sortdescend0=0
- width1=128
+ width1=178
  sortdescend1=0
  [symbolfo]
  splitdir=0
@@ -1019,8 +1036,8 @@ windowlayout=554
  y=0
  cx=247
  cy=44
- rcx=1262
- rcy=583
+ rcx=1129
+ rcy=679
  [watchfo.grid]
  propcolwidthref=121
  values0=2
@@ -1050,7 +1067,7 @@ windowlayout=554
  value=1
  [messagefo]
  splitdir=0
- useroptions=268517483
+ useroptions=268550251
  parent=mainfo.basedock
  visible=1
  mdistate=0
@@ -1059,9 +1076,9 @@ windowlayout=554
  ncx=0
  ncy=0
  x=0
- y=469
- cx=1199
- cy=95
+ y=512
+ cx=1219
+ cy=88
  rcx=0
  rcy=0
  [componentstorefo]
@@ -1130,24 +1147,24 @@ windowlayout=554
  [componentpalettefo]
  splitdir=0
  useroptions=268460139
- stackedunder=
+ stackedunder=objectinspectorfo
  parent=
- mdistate=3
+ mdistate=0
  nx=0
  ny=0
  ncx=0
  ncy=0
- x=240
- y=139
- cx=956
- cy=77
+ x=428
+ y=66
+ cx=440
+ cy=129
  rcx=0
  rcy=0
  wsize=0
  active=0
  visible=0
  [componentpalettefo.componentpages]
- activetab=0
+ activetab=1
  [debuggerfo]
  splitdir=0
  useroptions=24683
@@ -1160,8 +1177,8 @@ windowlayout=554
  ncy=0
  x=0
  y=0
- cx=1199
- cy=83
+ cx=1219
+ cy=52
  rcx=0
  rcy=0
  [debuggerfo.basedock]
@@ -1172,12 +1189,12 @@ windowlayout=554
  mdistate=0
  nx=0
  ny=0
- ncx=1199
- ncy=25
+ ncx=1221
+ ncy=77
  x=0
  y=0
- cx=1207
- cy=10
+ cx=1219
+ cy=60
  rcx=0
  rcy=0
  [debuggerfo.edit_options]
@@ -1187,28 +1204,9 @@ windowlayout=554
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/fpd/src/Azote/AArch64.pas
- history=20
-  /home/fred/fpd/src/Azote/Azote.pas
-  /home/fred/Azote/source/Config.inc
-  /home/fred/fpd/src/fpdbgdisasarm.pas
-  /home/fred/Azote_fred/source/disasm/arch/AArch64/Azote.Disassembler.AArch64.pas
-  /home/fred/fpd/src/fpdebug/fpdbgdisasavr.pp
-  /home/fred/fpd/src/fpdebug/fpdbgdisasx86.pp
-  /home/fred/fpd/src/fpdebug/fpimgreaderelf.pas
-  /home/fred/fpd/src/fpdebug/fpimgreaderelftypes.pas
-  /home/fred/fpd/src/fpdebug/fpdbglinuxclasses.pas
-  /home/fred/fpd/src/fpdebug/fpdbgavrclasses.pas
-  /home/fred/fpd/src/fpdebug_fred/fpdbgcommon.pas
-  /home/fred/fpd/src/fpdebug_fred/fpdbgcallcontextinfo.pas
-  /home/fred/fpd/src/fpdebug/fpdbgclasses.pp
-  /home/fred/fpd/src/fpdebug/fpdbgcommon.pas
-  /home/fred/fpd/src/fpdebug/fpdbgsymtablecontext.pas
-  /home/fred/Azote/clt/Azote.dpr
-  /home/fred/fpd/src/fpdcommand.pas
-  /home/fred/fpd/src/fpd.lpr
-  /home/fred/Azote/tests/Test.pas
-  /home/fred/Azote/source/disasm/arch/AArch64/aarch64-adt-asm.inc
+ value=/home/pi/azotenew/Azote.pas
+ history=1
+  ${PROJECTDIR}/main.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]
@@ -1223,41 +1221,34 @@ windowlayout=554
  ny=0
  ncx=0
  ncy=0
- x=208
+ x=0
  y=0
- cx=991
- cy=380
+ cx=1219
+ cy=454
  rcx=0
  rcy=0
  [sourcefo.files_tab]
- order=6
-  0
-  1
-  2
-  5
-  3
-  4
  firsttab=0
- index=3
+ index=1
  [confideufo.fontname]
  value=stf_default
  [confideufo.usedefaulteditoroptions]
  value=0
- [cpuc86_64fo]
+ [cpuarmfo]
  irqoff=0
  splitdir=0
  useroptions=268451947
  stackedunder=confdebuggerfo
  parent=
- mdistate=0
+ mdistate=3
  nx=0
  ny=0
  ncx=0
  ncy=0
- x=183
- y=113
- cx=352
- cy=277
+ x=174
+ y=158
+ cx=264
+ cy=276
  rcx=0
  rcy=0
  wsize=0
@@ -1265,7 +1256,7 @@ windowlayout=554
  visible=0
  [mainfo.panel1]
  splitdir=1
- useroptions=302087659
+ useroptions=302022123
  parent=mainfo.basedock
  visible=1
  mdistate=0
@@ -1274,9 +1265,9 @@ windowlayout=554
  ncx=0
  ncy=0
  x=0
- y=86
- cx=1199
- cy=380
+ y=55
+ cx=1219
+ cy=454
  rcx=0
  rcy=0
 [targetconsole]

@@ -1,4 +1,4 @@
-unit FpDbgLinuxClasses;
+unit FpDbgLinuxArmClasses;
 
 {$mode objfpc}{$H+}
 {$packrecords c}
@@ -20,14 +20,7 @@ uses
   FpDbgLoader, 
 
   // fred arm
-  {$if defined(CPU386) or defined(CPUI386)
-   or defined(CPUAMD64) or defined(CPUX64)}
-   FpDbgDisasX86,
-  {$endif}
-  
-  {$if defined(CPUAARCH64) or defined(CPUARM)}
-   FpDbgDisasArm,
-  {$endif} 
+  FpDbgDisasArm,
   
   DbgIntfBaseTypes, DbgIntfDebuggerBase,
   FpDbgLinuxExtra,
@@ -40,24 +33,24 @@ uses
   FpImgReaderBase;
 
 type
-  user_regs_struct64 = record
-    r15: cuint64;
-    r14: cuint64;
-    r13: cuint64;
-    r12: cuint64;
-    rbp: cuint64;
-    rbx: cuint64;
-    r11: cuint64;
-    r10: cuint64;
-    r9 : cuint64;
-    r8 : cuint64;
-    rax: cuint64;
-    rcx: cuint64;
-    rdx: cuint64;
-    rsi: cuint64;
-    rdi: cuint64;
-    orig_rax: cuint64;
-    rip: cuint64;
+  user_regs_struct64 = record // aarch64 TODO
+    r0: cuint32;
+    r1: cuint32;
+    r2: cuint32;
+    r3: cuint32;
+    r4: cuint32;
+    r5: cuint32;
+    r6: cuint32;
+    r7: cuint32;
+    r8: cuint32;
+    r9: cuint32;
+    r10: cuint32;
+    r11: cuint32;
+    r12: cuint32;
+    r13: cuint32;
+    r14: cuint32;
+    r15: cuint32; // todo all until 30
+    pstate: cuint32;
     cs : cuint64;
     eflags: cuint64;
     rsp: cuint64;
@@ -70,12 +63,12 @@ type
     gs : cuint64;
   end;
 
-  user_fpregs_struct64 = record
+  user_fpregs_struct64 = record // aarch64 todo
     cwd : word;
     swd : word;
     ftw : word;
     fop : word;
-    rip : qword;
+    pc : qword;
     rdp : qword;
     mxcsr : dword;
     mxcr_mask : dword;
@@ -107,32 +100,32 @@ type
     u_debugreg : array[0..7] of qword;
   end;
 
-  TUserRegs32 = array[0..26] of cuint32;
-  TUserRegs64 = array[0..26] of cuint64;
+  TUserRegs32 = array[0..26] of cuint32; // arm32
+  TUserRegs64 = array[0..26] of cuint64; // aarch64
   TUserRegs = record
     case integer of
       0: (regs32: TUserRegs32);
       1: (regs64: TUserRegs64);
   end;
 
-  user_regs_struct32 = record
-    ebx: cuint32;
-    ecx: cuint32;
-    edx: cuint32;
-    esi: cuint32;
-    edi: cuint32;
-    ebp: cuint32;
-    eax: cuint32;
-    xds: cuint32;
-    xes: cuint32;
-    xfs: cuint32;
-    xgs: cuint32;
-    orig_eax: cuint32;
-    eip: cuint32;
-    xcs: cuint32;
-    eflags: cuint32;
-    esp: cuint32;
-    xss: cuint32;
+  user_regs_struct32 = record // arm32
+    r0: cuint32;
+    r1: cuint32;
+    r2: cuint32;
+    r3: cuint32;
+    r4: cuint32;
+    r5: cuint32;
+    r6: cuint32;
+    r7: cuint32;
+    r8: cuint32;
+    r9: cuint32;
+    r10: cuint32;
+    r11: cuint32;
+    r12: cuint32;
+    r13: cuint32;
+    r14: cuint32;
+    r15: cuint32; // pc
+    pstate: cuint32;
   end;
 
   user_fpxregs_struct32 = record
@@ -184,23 +177,23 @@ function login_tty(__fd:longint):longint;cdecl;external 'c' name 'login_tty';
 function openpty(__amaster:Plongint; __aslave:Plongint; __name:Pchar; __termp:pointer{Ptermios}; __winp:pointer{Pwinsize}):longint;cdecl;external 'util' name 'openpty';
 
 const
-  R15      = 0;
-  R14      = 1;
-  R13      = 2;
-  R12      = 3;
-  RBP      = 4;
-  RBX      = 5;
-  R11      = 6;
-  R10      = 7;
-  R9       = 8;
-  R8       = 9;
-  RAX      = 10;
-  RCX      = 11;
-  RDX      = 12;
-  RSI      = 13;
-  RDI      = 14;
-  ORIG_RAX = 15;
-  RIP      = 16;
+  R0      = 0;
+  R1      = 1;
+  R2      = 2;
+  R3      = 3;
+  R4      = 4;
+  R5      = 5;
+  R6      = 6;
+  R7      = 7;
+  R8       = 8;
+  R9       = 9;
+  R10      = 10;
+  R11      = 11;
+  R12      = 12;
+  R13      = 13;
+  R14      = 14;
+  R15      = 15;
+  PC       = 15;
   CS       = 17;
   EFLAGS   = 18;
   RSP      = 19;
@@ -224,7 +217,7 @@ const
   XFS      = 9;
   XGS      = 10;
   ORIG_EAX = 11;
-  EIP      = 12;
+  PC1      = 12;
   XCS      = 13;
   EFL      = 14;
   UESP     = 15;
@@ -658,9 +651,9 @@ begin
   FDidResetInstructionPointer := True;
 
   if Process.Mode=dm32 then
-    Dec(FUserRegs.regs32[eip])
+    Dec(FUserRegs.regs32[pc])
   else
-    Dec(FUserRegs.regs64[rip]);
+    Dec(FUserRegs.regs64[pc]);
   FUserRegsChanged:=true;
 end;
 
@@ -734,29 +727,31 @@ begin
 
   if not ReadThreadState then
     exit;
-  if Process.Mode=dm32 then
-    begin
-    FRegisterValueList.DbgRegisterAutoCreate['eax'].SetValue(FUserRegs.regs32[eax], IntToStr(FUserRegs.regs32[eax]),4,0);
-    FRegisterValueList.DbgRegisterAutoCreate['ecx'].SetValue(FUserRegs.regs32[ecx], IntToStr(FUserRegs.regs32[ecx]),4,1);
-    FRegisterValueList.DbgRegisterAutoCreate['edx'].SetValue(FUserRegs.regs32[edx], IntToStr(FUserRegs.regs32[edx]),4,2);
-    FRegisterValueList.DbgRegisterAutoCreate['ebx'].SetValue(FUserRegs.regs32[ebx], IntToStr(FUserRegs.regs32[ebx]),4,3);
-    FRegisterValueList.DbgRegisterAutoCreate['esp'].SetValue(FUserRegs.regs32[uesp], IntToStr(FUserRegs.regs32[uesp]),4,4);
-    FRegisterValueList.DbgRegisterAutoCreate['ebp'].SetValue(FUserRegs.regs32[ebp], IntToStr(FUserRegs.regs32[ebp]),4,5);
-    FRegisterValueList.DbgRegisterAutoCreate['esi'].SetValue(FUserRegs.regs32[esi], IntToStr(FUserRegs.regs32[esi]),4,6);
-    FRegisterValueList.DbgRegisterAutoCreate['edi'].SetValue(FUserRegs.regs32[edi], IntToStr(FUserRegs.regs32[edi]),4,7);
-    FRegisterValueList.DbgRegisterAutoCreate['eip'].SetValue(FUserRegs.regs32[eip], IntToStr(FUserRegs.regs32[EIP]),4,8);
+  if Process.Mode=dm32 then  // arm32
+  begin
+    FRegisterValueList.DbgRegisterAutoCreate['r0'].SetValue(FUserRegs.regs32[r0], IntToStr(FUserRegs.regs32[r0]),4,0);
+    FRegisterValueList.DbgRegisterAutoCreate['r1'].SetValue(FUserRegs.regs32[r1], IntToStr(FUserRegs.regs32[r1]),4,1);
+    FRegisterValueList.DbgRegisterAutoCreate['r2'].SetValue(FUserRegs.regs32[r2], IntToStr(FUserRegs.regs32[r2]),4,2);
+    FRegisterValueList.DbgRegisterAutoCreate['r3'].SetValue(FUserRegs.regs32[r3], IntToStr(FUserRegs.regs32[r3]),4,3);
+    FRegisterValueList.DbgRegisterAutoCreate['r4'].SetValue(FUserRegs.regs32[r4], IntToStr(FUserRegs.regs32[r4]),4,4);
+    FRegisterValueList.DbgRegisterAutoCreate['r5'].SetValue(FUserRegs.regs32[r5], IntToStr(FUserRegs.regs32[r5]),4,5);
+    FRegisterValueList.DbgRegisterAutoCreate['r6'].SetValue(FUserRegs.regs32[r6], IntToStr(FUserRegs.regs32[r6]),4,6);
+    FRegisterValueList.DbgRegisterAutoCreate['r7'].SetValue(FUserRegs.regs32[r7], IntToStr(FUserRegs.regs32[r7]),4,7);
+    FRegisterValueList.DbgRegisterAutoCreate['r8'].SetValue(FUserRegs.regs32[r8], IntToStr(FUserRegs.regs32[r8]),4,8);
+    FRegisterValueList.DbgRegisterAutoCreate['r9'].SetValue(FUserRegs.regs32[r9], IntToStr(FUserRegs.regs32[r9]),4,9);
+    FRegisterValueList.DbgRegisterAutoCreate['r10'].SetValue(FUserRegs.regs32[r10], IntToStr(FUserRegs.regs32[r10]),4,10);
+    FRegisterValueList.DbgRegisterAutoCreate['r11'].SetValue(FUserRegs.regs32[r11], IntToStr(FUserRegs.regs32[r11]),4,11);
+    FRegisterValueList.DbgRegisterAutoCreate['r12'].SetValue(FUserRegs.regs32[r12], IntToStr(FUserRegs.regs32[r12]),4,12);
+    FRegisterValueList.DbgRegisterAutoCreate['r13'].SetValue(FUserRegs.regs32[r13], IntToStr(FUserRegs.regs32[r13]),4,13);
+    FRegisterValueList.DbgRegisterAutoCreate['r14'].SetValue(FUserRegs.regs32[r14], IntToStr(FUserRegs.regs32[r14]),4,14);
+    FRegisterValueList.DbgRegisterAutoCreate['r15'].SetValue(FUserRegs.regs32[r15], IntToStr(FUserRegs.regs32[r14]),4,r15);
+  
+    FRegisterValueList.DbgRegisterAutoCreate['eflags'].Setx86EFlagsValue(FUserRegs.regs32[eflags]); // TODO
 
-    FRegisterValueList.DbgRegisterAutoCreate['eflags'].Setx86EFlagsValue(FUserRegs.regs32[eflags]);
-
-    FRegisterValueList.DbgRegisterAutoCreate['cs'].SetValue(FUserRegs.regs32[xcs], IntToStr(FUserRegs.regs32[xcs]),4,0);
-    FRegisterValueList.DbgRegisterAutoCreate['ss'].SetValue(FUserRegs.regs32[xss], IntToStr(FUserRegs.regs32[xss]),4,0);
-    FRegisterValueList.DbgRegisterAutoCreate['ds'].SetValue(FUserRegs.regs32[xds], IntToStr(FUserRegs.regs32[xds]),4,0);
-    FRegisterValueList.DbgRegisterAutoCreate['es'].SetValue(FUserRegs.regs32[xes], IntToStr(FUserRegs.regs32[xes]),4,0);
-    FRegisterValueList.DbgRegisterAutoCreate['fs'].SetValue(FUserRegs.regs32[xfs], IntToStr(FUserRegs.regs32[xfs]),4,0);
-    FRegisterValueList.DbgRegisterAutoCreate['gs'].SetValue(FUserRegs.regs32[xgs], IntToStr(FUserRegs.regs32[xgs]),4,0);
+    
   end else
-    begin
-     // rax = rO arm
+    begin   // aarch64 TODO
+    {
     FRegisterValueList.DbgRegisterAutoCreate['rax'].SetValue(FUserRegs.regs64[rax], IntToStr(FUserRegs.regs64[rax]),8,0);
     FRegisterValueList.DbgRegisterAutoCreate['rbx'].SetValue(FUserRegs.regs64[rbx], IntToStr(FUserRegs.regs64[rbx]),8,3);
     FRegisterValueList.DbgRegisterAutoCreate['rcx'].SetValue(FUserRegs.regs64[rcx], IntToStr(FUserRegs.regs64[rcx]),8,2);
@@ -775,17 +770,22 @@ begin
     FRegisterValueList.DbgRegisterAutoCreate['r14'].SetValue(FUserRegs.regs64[r14], IntToStr(FUserRegs.regs64[r14]),8,14);
     FRegisterValueList.DbgRegisterAutoCreate['r15'].SetValue(FUserRegs.regs64[r15], IntToStr(FUserRegs.regs64[r15]),8,15);
 
-    FRegisterValueList.DbgRegisterAutoCreate['rip'].SetValue(FUserRegs.regs64[rip], IntToStr(FUserRegs.regs64[rip]),8,16);
+    FRegisterValueList.DbgRegisterAutoCreate['pc'].SetValue(FUserRegs.regs64[pc], IntToStr(FUserRegs.regs64[pc]),8,16);
     FRegisterValueList.DbgRegisterAutoCreate['eflags'].Setx86EFlagsValue(FUserRegs.regs64[eflags]);
 
     FRegisterValueList.DbgRegisterAutoCreate['cs'].SetValue(FUserRegs.regs64[cs], IntToStr(FUserRegs.regs64[cs]),8,43);
     FRegisterValueList.DbgRegisterAutoCreate['fs'].SetValue(FUserRegs.regs64[fs], IntToStr(FUserRegs.regs64[fs]),8,46);
     FRegisterValueList.DbgRegisterAutoCreate['gs'].SetValue(FUserRegs.regs64[gs], IntToStr(FUserRegs.regs64[gs]),8,47);
+   }
   end;
   FRegisterValueListValid:=true;
 end;
 
 function TDbgLinuxThread.GetInstructionPointerRegisterValue: TDbgPtr;
+var
+  // fred arm
+   astr :  string;
+
 begin
   {$IFDEF FPDEBUG_THREAD_CHECK}AssertFpDebugThreadId('TDbgLinuxThread.GetInstructionPointerRegisterValue');{$ENDIF}
   assert(FIsPaused, 'TDbgLinuxThread.GetInstructionPointerRegisterValue: FIsPaused');
@@ -794,9 +794,12 @@ begin
   if not ReadThreadState then
     exit;
   if Process.Mode=dm32 then
-    result := FUserRegs.regs32[eip]
+  begin
+   fpPTrace(PTRACE_GETREGS, ID, nil, nil); 
+   result := FUserRegs.regs32[pc];
+  end
   else
-    result := FUserRegs.regs64[rip];
+    result := FUserRegs.regs64[pc];
 end;
 
 function TDbgLinuxThread.GetStackBasePointerRegisterValue: TDbgPtr;
@@ -808,9 +811,9 @@ begin
   if not ReadThreadState then
     exit;
   if Process.Mode=dm32 then
-    result := FUserRegs.regs32[ebp]
+    result := FUserRegs.regs32[ebp] 
   else
-    result := FUserRegs.regs64[rbp];
+    result := FUserRegs.regs64[ebp]; // rbp
 end;
 
 function TDbgLinuxThread.GetStackPointerRegisterValue: TDbgPtr;
@@ -832,7 +835,7 @@ begin
   if Process.Mode=dm32 then
   begin
     case AName of
-      'eip': FUserRegs.regs32[eip] := AValue;
+      'pc': FUserRegs.regs32[pc] := AValue;
       'eax': FUserRegs.regs32[eax] := AValue;
     else
       raise Exception.CreateFmt('Setting the [%s] register is not supported', [AName]);
@@ -841,14 +844,14 @@ begin
   end else
     begin
     case AName of
-      'rax': FUserRegs.regs64[rax] := AValue;
-      'rbx': FUserRegs.regs64[rbx] := AValue;
-      'rcx': FUserRegs.regs64[rcx] := AValue;
-      'rdx': FUserRegs.regs64[rdx] := AValue;
-      'rsi': FUserRegs.regs64[rsi] := AValue;
-      'rdi': FUserRegs.regs64[rdi] := AValue;
-      'rbp': FUserRegs.regs64[rbp] := AValue;
-      'rsp': FUserRegs.regs64[rsp] := AValue;
+      'r0': FUserRegs.regs64[r0] := AValue;
+      'r1': FUserRegs.regs64[r1] := AValue;
+      'r2': FUserRegs.regs64[r2] := AValue;
+      'r3': FUserRegs.regs64[r3] := AValue;
+      'r4': FUserRegs.regs64[r4] := AValue;
+      'r5': FUserRegs.regs64[r5] := AValue;
+      'r6': FUserRegs.regs64[r6] := AValue;
+      'r7': FUserRegs.regs64[r7] := AValue;
 
       'r8': FUserRegs.regs64[r8] := AValue;
       'r9': FUserRegs.regs64[r9] := AValue;
@@ -859,7 +862,7 @@ begin
       'r14': FUserRegs.regs64[r14] := AValue;
       'r15': FUserRegs.regs64[r15] := AValue;
 
-      'rip': FUserRegs.regs64[rip] := AValue;
+      'pc': FUserRegs.regs64[pc] := AValue;
 
       'cs': FUserRegs.regs64[cs] := AValue;
       'fs': FUserRegs.regs64[fs] := AValue;

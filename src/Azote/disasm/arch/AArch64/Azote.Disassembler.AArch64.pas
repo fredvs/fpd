@@ -13,9 +13,11 @@
 // https://mozilla.org/MPL/2.0/.
 // ******************************************************************
 
-unit az_aarch64;
+unit Azote.Disassembler.AArch64;
 
 interface
+
+{$I ../../../Config.inc}
 
 {$DEFINE DEVMODE}
 {$DEFINE PUREPASCAL}
@@ -25,7 +27,7 @@ interface
 
 {$IFDEF FPC}
 {$MODE DELPHI}
-{$ASMMODE INTEL}
+//{$ASMMODE INTEL}
 {$WARN 3177 OFF} // Some fields coming after X.
 {$WARN 3175 OFF} // Some fields coming before X.
 { Some params are not used by a function. But were inserted
@@ -33,6 +35,7 @@ interface
   So we need to turns hints off. }
 {$HINTS OFF}
 {$ENDIF FPC}
+
 
 uses
   SysUtils,

@@ -58,18 +58,17 @@ type
   // On platforms with off_t =64-bit, people should
   // use int64, and typecast all calls that don't
   // return off_t to cint.
-{$ifdef cpux86_64}
+{$ifdef cpu64}
   TSysResult = int64;
   TSysParam  = int64;
 {$else}
   TSysResult = cint32;
   TSysParam  = cint32;
-{$endif cpux86_64}
+{$endif cpu64}
 
-{$ifdef darwin}
-Function ptrace(ptrace_request: cInt; pid: TPid; addr:pointer; data:pointer): cint; cdecl; external clib name 'ptrace';
-{$endif darwin}
-{$ifdef linux}
+{$if defined(darwin) or defined(CPUAARCH64) or defined(CPUARM)} 
+ Function ptrace(ptrace_request: cInt; pid: TPid; addr:pointer; data:pointer): cint; cdecl; external clib name 'ptrace';
+{$else}
 function Do_SysCall(sysnr,param1,param2,param3,param4:TSysParam):TSysResult; {$ifdef cpui386}register;{$endif} external name 'FPC_SYSCALL4';
 
 const
@@ -79,19 +78,19 @@ const
   syscall_nr_ptrace                            = 26;
 {$endif}
 
-{$endif linux}
+{$endif}
 
 function fpPTrace(ptrace_request: cint; pid: TPid; addr: Pointer; data: pointer): PtrInt;
-{$ifdef linux}
+{$if defined(darwin) or defined(CPUAARCH64) or defined(CPUARM)} 
+{$else}
 var
   res : TSysResult;
   ret : PtrInt;
-{$endif linux}
-begin
-{$ifdef darwin}
-  result := ptrace(ptrace_request, pid, addr, data);
 {$endif}
-{$ifdef linux}
+begin
+{$if defined(darwin) or defined(CPUAARCH64) or defined(CPUARM)} 
+  result := ptrace(ptrace_request, pid, addr, data);
+{$else}
   if (ptrace_request > 0) and (ptrace_request < 4) then
     data := @ret;
 
@@ -103,7 +102,7 @@ begin
     end
   else
     result := res;
-{$endif linux}
+{$endif}
 end;
 
 end.

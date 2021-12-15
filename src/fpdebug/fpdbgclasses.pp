@@ -1498,7 +1498,7 @@ begin
   FDwarfIdx:=ADwarfIdx;
 end;
 
-procedure TDbgRegisterValue.Setx86EFlagsValue(ANumValue: TDBGPtr);
+procedure TDbgRegisterValue.Setx86EFlagsValue(ANumValue: TDBGPtr); // TODO ARM
 var
   FlagS: string;
 begin

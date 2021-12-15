@@ -14,7 +14,16 @@ uses
   FpDbgClasses, FpDbgCallContextInfo, FpDbgUtil,
   {$ifdef windows}  FpDbgWinClasses,  {$endif}
   {$ifdef darwin}  FpDbgDarwinClasses,  {$endif}
-  {$ifdef linux}  FpDbgLinuxClasses,  {$endif}
+  {$ifdef linux}
+   // fred arm
+  {$if defined(CPU386) or defined(CPUI386)
+   or defined(CPUAMD64) or defined(CPUX64)}
+   FpDbgLinuxClasses,
+  {$endif}
+  {$if defined(CPUAARCH64) or defined(CPUARM)}
+   FpDbgLinuxArmClasses,
+  {$endif} 
+  {$endif}
   FpDbgInfo, FpDbgDwarf, FpdMemoryTools, FpErrorMessages;
 
 type
@@ -1455,6 +1464,7 @@ function TDbgController.Run: boolean;
 var
   Flags: TStartInstanceFlags;
 begin
+
   result := False;
   FLastError := NoError;
   if assigned(FMainProcess) then
@@ -1494,12 +1504,10 @@ begin
     DebugLn(DBG_WARNINGS, 'Error - could not create TDbgProcess');
     Exit;
     end;
-
   if AttachToPid <> 0 then
     Result := FCurrentProcess.AttachToInstance(AttachToPid, FLastError)
   else
     Result := FCurrentProcess.StartInstance(Params, Environment, WorkingDirectory, FConsoleTty, Flags, FLastError);
-
   if Result then
     begin
     FProcessMap.Add(FCurrentProcess.ProcessID, FCurrentProcess);
@@ -1510,6 +1518,7 @@ begin
     Result := false;
     FreeAndNil(FCurrentProcess);
     end;
+
 end;
 
 procedure TDbgController.Stop;
