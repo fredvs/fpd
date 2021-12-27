@@ -257,7 +257,7 @@ aftcommand=0
 makeoptions=9
  -l -Mobjfpc -Sh
  -gl
- -B -Sa
+ -B
  -O1
  -XX -CX -Xs
  -vih -Sa
@@ -489,13 +489,13 @@ befcommandon=0
 makeoptionson=9
  255
  0
- 200
+ 204
  206
  255
- 4091
- 4091
+ 3891
+ 3891
  4095
- 4091
+ 3891
 compilerusedon=29
  3895
  0
@@ -819,16 +819,16 @@ editpos=16
  0,-1073741823
  0,-1073741823
  0,-1073741823
+ 0,65
+ 0,10
  0,-1073741823
  0,-1073741823
- 0,6
- 64,68
- 0,-1073741823
- 0,22
  0,-1073741823
  0,-1073741823
- 0,87
- 0,41
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
+ 0,-1073741823
 bookmarks0=0
 bookmarks1=0
 bookmarks2=0
@@ -877,7 +877,7 @@ relpaths=16
  fpdebug/fpdbgcontroller.pas
  fpdebug/fpdbgclasses.pp
  fpdlast/src/fpdebug/fpdbglinuxclasses.pas
- ../fpdlast/src/fpdebug/fpdbglinuxextra.pas
+ fpdlast/src/fpdebug/fpdbglinuxextra.pas
  fpdebug/fpdbgcommon.pas
 ismoduletexts=16
  0
@@ -901,27 +901,10 @@ moduleoptions=0
 visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
-order=16
- 0
- 1
- 2
- 5
- 8
- 4
- 6
- 9
- 3
- 13
- 10
- 7
- 12
- 11
- 14
- 15
 firsttab=6
-index=7
+index=6
 [layout]
-windowlayout=557
+windowlayout=540
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -935,13 +918,13 @@ windowlayout=557
  ny=0
  ncx=0
  ncy=0
- x=34
- y=45
+ x=87
+ y=77
  cx=1231
  cy=621
  rcx=0
  rcy=0
- wsize=6
+ wsize=0
  active=1
  visible=1
  [findmessagefo.findtext]
@@ -1036,7 +1019,7 @@ windowlayout=557
  [findinfilefo]
  splitdir=0
  useroptions=268451947
- stackedunder=mainfo
+ stackedunder=
  parent=
  mdistate=0
  nx=0
@@ -1052,7 +1035,7 @@ windowlayout=557
  [projecttreefo]
  splitdir=0
  useroptions=268484715
- stackedunder=findinfilefo
+ stackedunder=mainfo
  parent=
  mdistate=3
  nx=0
@@ -1155,10 +1138,10 @@ windowlayout=557
  [breakpointsfo.bkptson]
  value=1
  [objectinspectorfo.grid]
- propcolwidthref=242
- width0=58
+ propcolwidthref=469
+ width0=112
  sortdescend0=0
- width1=178
+ width1=351
  sortdescend1=0
  [symbolfo]
  splitdir=0
@@ -1251,8 +1234,8 @@ windowlayout=557
  ncx=0
  ncy=0
  x=0
- y=602
- cx=1356
+ y=512
+ cx=1219
  cy=88
  rcx=0
  rcy=0
@@ -1350,8 +1333,8 @@ windowlayout=557
  ncy=0
  x=0
  y=0
- cx=1356
- cy=51
+ cx=1219
+ cy=43
  rcx=0
  rcy=0
  [debuggerfo.basedock]
@@ -1363,11 +1346,11 @@ windowlayout=557
  nx=0
  ny=0
  ncx=1341
- ncy=29
+ ncy=25
  x=0
- y=0
- cx=1356
- cy=28
+ y=-1
+ cx=1207
+ cy=23
  rcx=0
  rcy=0
  [debuggerfo.edit_options]
@@ -1377,10 +1360,11 @@ windowlayout=557
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/fpd/src/fpdebug/fpdbglinuxextra.pas
+ value=/home/fred/fpd/src/fpd.lpr
  history=20
-  /home/fred/fpd/src/fpdebug/fpdbgdarwinclasses.pas
+  /home/fred/fpd/src/fpdebug/fpdbgavrclasses.pas
   /home/fred/fpdlast/src/fpdebug/fpdbglinuxclasses.pas
+  /home/fred/fpd/src/fpdebug/fpdbgdarwinclasses.pas
   /home/fred/fpdlast/src/fpdebug/fpdbgcallcontextinfo.pas
   /home/fred/fpd/src/Azote/az_aarch64.pas
   /home/fred/fpd/src/Azote/aarch64-classes.inc
@@ -1398,9 +1382,8 @@ windowlayout=557
   /home/fred/fpd/src/Azote/aarch64-adt-pp.inc
   /home/fred/fpd/src/Azote/aarch64-adt-asm.inc
   /home/fred/fpd/src/Azote/aarch64-tbl.inc
-  /home/fred/fpd/src/Azote/Azote.pas
  [debuggerfo.project_options]
- value=1
+ value=6
  [debuggerfo.hints]
  value=0
  [sourcefo]
@@ -1415,30 +1398,13 @@ windowlayout=557
  ncy=0
  x=0
  y=0
- cx=1356
- cy=545
+ cx=1219
+ cy=463
  rcx=0
  rcy=0
  [sourcefo.files_tab]
- order=16
-  0
-  1
-  2
-  5
-  8
-  4
-  6
-  9
-  3
-  13
-  10
-  7
-  12
-  11
-  14
-  15
  firsttab=6
- index=7
+ index=6
  [confideufo.fontname]
  value=stf_default
  [confideufo.usedefaulteditoroptions]
@@ -1474,9 +1440,9 @@ windowlayout=557
  ncx=0
  ncy=0
  x=0
- y=54
- cx=1356
- cy=545
+ y=46
+ cx=1219
+ cy=463
  rcx=0
  rcy=0
 [targetconsole]
